@@ -72,5 +72,4 @@ package-lock.json
 
 /.pre-commit-config.yaml
 
-
 .coverage

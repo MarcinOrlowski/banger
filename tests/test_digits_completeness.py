@@ -27,76 +27,63 @@ Characters can have empty content (0 lit pixels) but must exist with valid struc
 class TestDigitsCompleteness(unittest.TestCase):
     """Test that fonts properly implement all digits 0-9."""
 
-    def test_font_implements_all_digits_0_to_9(self):
-        """Test that a font implements all digits 0-9 with valid structure.
+    def _validate_font_digits_completeness(self, font_name):
+        """Helper method to validate that a font has complete 0-9 digits implementation."""
+        font = create_font(font_name)
+        available_chars = set(font.get_available_characters())
 
-        This is a helper method that validates a single font has all 0-9 characters.
-        Each character must:
-        - Exist in the font
-        - Have non-None character data
-        - Have a non-empty lines list
-        - Lines can be empty strings (0 lit pixels allowed)
-        """
+        # Define all digits 0-9
+        digits = set("0123456789")
 
-        def validate_font_digits_completeness(font_name):
-            """Validate that a font has complete 0-9 digits implementation."""
-            font = create_font(font_name)
-            available_chars = set(font.get_available_characters())
+        # Check that all 0-9 characters exist
+        missing_digits = digits - available_chars
+        self.assertEqual(
+            len(missing_digits),
+            0,
+            f"Font '{font_name}' missing digits: {sorted(missing_digits)}",
+        )
 
-            # Define all digits 0-9
-            digits = set("0123456789")
+        # Validate each 0-9 character has proper structure
+        for digit in digits:
+            with self.subTest(font=font_name, digit=digit):
+                char_data = font.get_character(digit)
 
-            # Check that all 0-9 characters exist
-            missing_digits = digits - available_chars
-            self.assertEqual(
-                len(missing_digits),
-                0,
-                f"Font '{font_name}' missing digits: {sorted(missing_digits)}",
-            )
+                # Character data must exist (not None)
+                self.assertIsNotNone(
+                    char_data,
+                    f"Font '{font_name}' character '{digit}' returned None data",
+                )
 
-            # Validate each 0-9 character has proper structure
-            for digit in digits:
-                with self.subTest(font=font_name, digit=digit):
-                    char_data = font.get_character(digit)
+                # Must have lines attribute
+                self.assertTrue(
+                    hasattr(char_data, "lines"),
+                    f"Font '{font_name}' character '{digit}' missing 'lines' attribute",
+                )
 
-                    # Character data must exist (not None)
-                    self.assertIsNotNone(
-                        char_data,
-                        f"Font '{font_name}' character '{digit}' returned None data",
-                    )
+                lines = char_data.lines
 
-                    # Must have lines attribute
-                    self.assertTrue(
-                        hasattr(char_data, "lines"),
-                        f"Font '{font_name}' character '{digit}' missing 'lines' attribute",
-                    )
+                # Lines must be a list
+                self.assertIsInstance(
+                    lines,
+                    list,
+                    f"Font '{font_name}' character '{digit}' lines is not a list: {type(lines)}",
+                )
 
-                    lines = char_data.lines
+                # Lines list must not be empty (but individual lines can be empty strings)
+                self.assertGreater(
+                    len(lines),
+                    0,
+                    f"Font '{font_name}' character '{digit}' has empty lines list",
+                )
 
-                    # Lines must be a list
+                # Each line must be a string (can be empty string - 0 lit pixels allowed)
+                for line_idx, line in enumerate(lines):
                     self.assertIsInstance(
-                        lines,
-                        list,
-                        f"Font '{font_name}' character '{digit}' lines is not a list: {type(lines)}",
+                        line,
+                        str,
+                        f"Font '{font_name}' character '{digit}' line {line_idx} "
+                        f"is not a string: {type(line)} = {repr(line)}",
                     )
-
-                    # Lines list must not be empty (but individual lines can be empty strings)
-                    self.assertGreater(
-                        len(lines),
-                        0,
-                        f"Font '{font_name}' character '{digit}' has empty lines list",
-                    )
-
-                    # Each line must be a string (can be empty string - 0 lit pixels allowed)
-                    for line_idx, line in enumerate(lines):
-                        self.assertIsInstance(
-                            line,
-                            str,
-                            f"Font '{font_name}' character '{digit}' line {line_idx} "
-                            f"is not a string: {type(line)} = {repr(line)}",
-                        )
-
-        return validate_font_digits_completeness
 
     def test_all_app_fonts_implement_complete_digits_0_to_9(self):
         """Test that ALL fonts in the app implement complete 0-9 digits.
@@ -104,15 +91,13 @@ class TestDigitsCompleteness(unittest.TestCase):
         This runs the digits completeness validation against every font
         available in the application to ensure system-wide consistency.
         """
-        validate_func = self.test_font_implements_all_digits_0_to_9()
-
         available_fonts = get_available_fonts()
         self.assertGreater(len(available_fonts), 0, "No fonts available for testing")
 
         for font_name in available_fonts:
             with self.subTest(font=font_name):
                 # Run the validation for this font
-                validate_func(font_name)
+                self._validate_font_digits_completeness(font_name)
 
     def test_digits_characters_have_consistent_height(self):
         """Test that all 0-9 characters in each font have consistent height.
@@ -181,16 +166,14 @@ class TestDigitsCompleteness(unittest.TestCase):
 
         Quadrant is the default font, so it must have complete digits support.
         """
-        validate_func = self.test_font_implements_all_digits_0_to_9()
-        validate_func("quadrant")
+        self._validate_font_digits_completeness("quadrant")
 
     def test_specific_font_digits_completeness_default(self):
         """Test that default font specifically has complete 0-9 implementation.
 
         Default font must have complete digits support.
         """
-        validate_func = self.test_font_implements_all_digits_0_to_9()
-        validate_func("default")
+        self._validate_font_digits_completeness("default")
 
 
 if __name__ == "__main__":
