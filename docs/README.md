@@ -36,12 +36,9 @@
   * [Creating a Configuration File](#creating-a-configuration-file)
   * [Configuration Options](#configuration-options)
   * [How Configuration Works](#how-configuration-works)
-<<<<<<< Updated upstream
-=======
 * [What's New?](../CHANGES.md)
 * [Developmer's corner](#development)
 * [License](../README.md#license)
->>>>>>> Stashed changes
 
 ---
 
@@ -57,10 +54,6 @@ character set and support for rendering any TTF/OTF font with Unicode!
 * **Better typography**  with proportional spacing that saves significant screen space,
 * **Compatible** with original Unix `banner` tool,
 * and **moar**!
-
-<<<<<<< Updated upstream
-=======
----
 
 ## Installation
 
