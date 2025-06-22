@@ -49,5 +49,3 @@ jobs:
           # LICENSE is externally sourced and we're not going to fix it.
           exclude: |
             LICENSE.md
-            README.md
-            CHANGES.md
