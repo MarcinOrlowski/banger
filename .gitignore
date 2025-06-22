@@ -1,5 +1,7 @@
 /.pre-commit-config.yaml
 
+/.flake8
+
 /.idea/
 # Python
 __pycache__/
