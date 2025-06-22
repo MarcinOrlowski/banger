@@ -10,7 +10,7 @@ characters.
 
 ### Component Diagram
 
-```
+```text
 CLI Layer (cli.py)
     ├── TTF Arguments Parser
     └── Font Factory Integration
@@ -47,28 +47,33 @@ class TtfFont(FontInterface):
 The rendering process follows these steps:
 
 1. **Font Loading** (lazy-loaded on first use)
+
    ```python
    PIL.ImageFont.truetype(font_path, font_size)
    ```
 
 2. **Bitmap Generation**
-  - Create white background image with padding
-  - Render character in black using PIL
-  - Convert to 2D boolean array (True = black pixel)
+
+   - Create white background image with padding
+   - Render character in black using PIL
+   - Convert to 2D boolean array (True = black pixel)
 
 3. **Bitmap Clipping**
-  - Remove horizontal whitespace for proportional spacing
-  - Preserve vertical space for consistent height
+
+   - Remove horizontal whitespace for proportional spacing
+   - Preserve vertical space for consistent height
 
 4. **Height Scaling**
-  - Calculate target pixel height: `terminal_lines × 2`
-  - Apply nearest-neighbor interpolation
-  - Maintain horizontal proportions
+
+   - Calculate target pixel height: `terminal_lines × 2`
+   - Apply nearest-neighbor interpolation
+   - Maintain horizontal proportions
 
 5. **Quadrant Conversion**
-  - Sample 2×2 pixel blocks
-  - Map to appropriate Unicode character
-  - Build line-by-line output
+
+   - Sample 2×2 pixel blocks
+   - Map to appropriate Unicode character
+   - Build line-by-line output
 
 ### 3. Quadrant Block Mapping
 
@@ -191,44 +196,53 @@ if args.ttf_font:
 ### Unit Tests
 
 1. **Bitmap Rendering**
-  - Verify character renders to expected size
-  - Test edge cases (missing glyphs, special chars)
+
+   - Verify character renders to expected size
+   - Test edge cases (missing glyphs, special chars)
 
 2. **Scaling Algorithm**
-  - Test various scale factors
-  - Verify output dimensions
+
+   - Test various scale factors
+   - Verify output dimensions
 
 3. **Quadrant Conversion**
-  - Test all 16 quadrant patterns
-  - Verify edge alignment
+
+   - Test all 16 quadrant patterns
+   - Verify edge alignment
 
 ### Integration Tests
 
 1. **CLI Parameter Handling**
-  - Test all parameter combinations
-  - Verify auto-calculation logic
+
+   - Test all parameter combinations
+   - Verify auto-calculation logic
 
 2. **Font Discovery**
-  - Mock file system for consistent tests
-  - Test sorting options
+
+   - Mock file system for consistent tests
+   - Test sorting options
 
 3. **End-to-End Rendering**
-  - Test with various fonts and text
-  - Verify output consistency
+
+   - Test with various fonts and text
+   - Verify output consistency
 
 ## Security Considerations
 
 1. **File Access**
-  - Only read access to font files
-  - Path validation to prevent directory traversal
+
+   - Only read access to font files
+   - Path validation to prevent directory traversal
 
 2. **Resource Limits**
-  - Reasonable maximum font size
-  - Character cache could be bounded if needed
+
+   - Reasonable maximum font size
+   - Character cache could be bounded if needed
 
 3. **Input Validation**
-  - Font path sanitization
-  - Parameter range validation
+
+   - Font path sanitization
+   - Parameter range validation
 
 ## Deployment Notes
 
@@ -256,23 +270,27 @@ pip install banger[ttf]
 ## Future Enhancements
 
 1. **Advanced Rendering**
-  - Grayscale support using more Unicode blocks
-  - Subpixel rendering for smoother edges
+
+   - Grayscale support using more Unicode blocks
+   - Subpixel rendering for smoother edges
 
 2. **Font Features**
-  - Kerning support
-  - Ligature handling
-  - Style synthesis (bold, italic)
+
+   - Kerning support
+   - Ligature handling
+   - Style synthesis (bold, italic)
 
 3. **Performance**
-  - Parallel character rendering
-  - Persistent cache between runs
-  - C extension for critical paths
+
+   - Parallel character rendering
+   - Persistent cache between runs
+   - C extension for critical paths
 
 4. **User Experience**
-  - Font preview mode
-  - Interactive font selector
-  - Web service API
+
+   - Font preview mode
+   - Interactive font selector
+   - Web service API
 
 ## Acceptance Criteria
 

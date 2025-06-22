@@ -13,13 +13,8 @@
 
 ---
 
-<<<<<<< Updated upstream
 # Changelog
 
 ## v1.0.0 (2025-06-22)
-----------------------
-=======
-## v1.0.0 (2025-06-22)
 
->>>>>>> Stashed changes
 - Initial public release

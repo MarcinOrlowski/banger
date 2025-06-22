@@ -255,7 +255,7 @@ commands = pytest {posargs}
 [testenv:lint]
 deps = ruff>=0.1.0
        black>=23.0
-commands = 
+commands =
     black --check src tests
     ruff check src tests
 
@@ -323,20 +323,20 @@ twine upload dist/*
 ### Key Design Decisions
 
 1. **Source Layout**: Using `src/` layout prevents accidental imports during testing
-2. **Modern Packaging**: pyproject.toml instead of setup.py for future-proofing
-3. **No Dependencies**: Pure Python implementation for maximum compatibility
-4. **Type Hints**: Full type annotations for better IDE support and documentation
-5. **Testing**: Comprehensive test suite with tox for multiple Python versions
-6. **pipx Friendly**: Designed as a CLI tool, perfect for pipx installation
+1. **Modern Packaging**: pyproject.toml instead of setup.py for future-proofing
+1. **No Dependencies**: Pure Python implementation for maximum compatibility
+1. **Type Hints**: Full type annotations for better IDE support and documentation
+1. **Testing**: Comprehensive test suite with tox for multiple Python versions
+1. **pipx Friendly**: Designed as a CLI tool, perfect for pipx installation
 
 ### Benefits of This Structure
 
 1. **Professional**: Follows Python packaging best practices
-2. **Maintainable**: Clear separation of concerns
-3. **Testable**: Easy to test individual components
-4. **Distributable**: Ready for PyPI upload
-5. **Cross-platform**: Works on Windows, macOS, and Linux
-6. **Future-proof**: Uses modern Python packaging standards
+1. **Maintainable**: Clear separation of concerns
+1. **Testable**: Easy to test individual components
+1. **Distributable**: Ready for PyPI upload
+1. **Cross-platform**: Works on Windows, macOS, and Linux
+1. **Future-proof**: Uses modern Python packaging standards
 
 This structure ensures the package is properly organized from the start and ready for
 distribution on PyPI, making it easy for users to install with either pip or pipx.

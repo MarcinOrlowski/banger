@@ -8,27 +8,30 @@ letters.
 ## Core Features (from original C implementation)
 
 1. **Character Support**:
-  - Uppercase letters A-Z
-  - Numbers 0-9
-  - Special characters: `# ~ ! @ $ % ^ & * ( ) _ + = { } [ ] | \ : ; " ' ` > < . , ? / - space`
 
-2. **Display Characteristics**:
-  - Fixed height characters (7 lines)
-  - Variable width characters
-  - 2-space separation between characters
-  - Automatic terminal width detection
-  - Truncation for oversized banners
+- Uppercase letters A-Z
+- Numbers 0-9
+- Special characters: `# ~ ! @ $ % ^ & * ( ) _ + = { } [ ] | \ : ; " ' > < . , ? / - space`
 
-3. **Input Processing**:
-  - Converts lowercase to uppercase
-  - Converts all whitespace to spaces
-  - Handles multiple words as separate banners
+1. **Display Characteristics**:
+
+- Fixed height characters (7 lines)
+- Variable width characters
+- 2-space separation between characters
+- Automatic terminal width detection
+- Truncation for oversized banners
+
+1. **Input Processing**:
+
+- Converts lowercase to uppercase
+- Converts all whitespace to spaces
+- Handles multiple words as separate banners
 
 ## Proposed Python Architecture
 
 ### 1. Module Structure
 
-```
+```ascii
 banger/
 ├── src/
 │   ├── __init__.py
@@ -85,28 +88,32 @@ banger/
 ## Improvements Over Original
 
 1. **Extensibility**:
-  - Plugin system for custom fonts
-  - JSON/YAML font definition support
-  - Font preview command
 
-2. **Enhanced Features**:
-  - Color support (using colorama/termcolor)
-  - Lowercase letter support
-  - Unicode character support (future)
-  - Horizontal/vertical alignment options
-  - Custom spacing between letters
+- Plugin system for custom fonts
+- JSON/YAML font definition support
+- Font preview command
 
-3. **Developer Experience**:
-  - Comprehensive test suite
-  - Type hints throughout
-  - Proper Python packaging
-  - API for programmatic use
+1. **Enhanced Features**:
 
-4. **User Experience**:
-  - Better error messages
-  - Progress indicator for long text
-  - Config file support
-  - Shell completion support
+- Color support (using colorama/termcolor)
+- Lowercase letter support
+- Unicode character support (future)
+- Horizontal/vertical alignment options
+- Custom spacing between letters
+
+1. **Developer Experience**:
+
+- Comprehensive test suite
+- Type hints throughout
+- Proper Python packaging
+- API for programmatic use
+
+1. **User Experience**:
+
+- Better error messages
+- Progress indicator for long text
+- Config file support
+- Shell completion support
 
 ## Implementation Phases
 
@@ -134,20 +141,23 @@ banger/
 ## Technical Considerations
 
 1. **Performance**:
-  - Lazy loading of fonts
-  - Efficient string concatenation
-  - Memory-conscious for large banners
 
-2. **Compatibility**:
-  - Python 3.8+ support
-  - Cross-platform (Windows, macOS, Linux)
-  - No mandatory external dependencies for core
+- Lazy loading of fonts
+- Efficient string concatenation
+- Memory-conscious for large banners
 
-3. **Quality Assurance**:
-  - Unit tests for all components
-  - Integration tests for CLI
-  - Property-based testing for text processing
-  - Code coverage >90%
+1. **Compatibility**:
+
+- Python 3.8+ support
+- Cross-platform (Windows, macOS, Linux)
+- No mandatory external dependencies for core
+
+1. **Quality Assurance**:
+
+- Unit tests for all components
+- Integration tests for CLI
+- Property-based testing for text processing
+- Code coverage >90%
 
 ## API Example
 
