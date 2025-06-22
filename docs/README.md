@@ -93,7 +93,7 @@ Please use `--demo` to see built-in fonts or type `--help` to see all available 
 
 ---
 
-## Installation
+## Installation Options
 
 This is regular Python package and is also hosted
 on [PyPi](https://pypi.org/project/website-as-app/) so
@@ -121,8 +121,8 @@ Please use `--demo` to see built-in fonts or type `--help` to see all available 
 
 ### Requirements
 
-- Python 3.8+
-- Pillow (PIL fork) for TTF/OTF font rendering
+* Python 3.8+
+* Pillow (PIL fork) for TTF/OTF font rendering
 
 ---
 
