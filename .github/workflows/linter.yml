@@ -43,9 +43,9 @@ jobs:
       - name: "Installing dependencies..."
         if: steps.filter.outputs.srcs == 'true'
         run: |
-          pip install --user -e ".[dev]"
+          pip install -e ".[dev]"
 
       - name: "Linting..."
         if: steps.filter.outputs.srcs == 'true'
         run: |
-          flake8 src/ tests/
+          flake8 --config .flake8.dist src/ tests/
