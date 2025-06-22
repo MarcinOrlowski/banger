@@ -40,8 +40,12 @@ jobs:
             srcs:
               - '**/*.py'
 
-      - name: "Setting up environment..."
+      - name: "Installing dependencies..."
         if: steps.filter.outputs.srcs == 'true'
         run: |
-          pip install -e ".[dev]"
+          pip install --user -e ".[dev]"
+
+      - name: "Linting..."
+        if: steps.filter.outputs.srcs == 'true'
+        run: |
           flake8 src/ tests/
