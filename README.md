@@ -11,6 +11,10 @@
 ┅┅┅ Your banner deserves to be a bänger ┅┅┅┅┅┅ https://github.com/MarcinOrlowski/banger ┅┅┅
 ```
 
+![PyPI - Version](https://img.shields.io/pypi/v/banger?style=flat)
+![GitHub License](https://img.shields.io/github/license/MarcinOrlowski/banger)
+[![PyPI Downloads](https://static.pepy.tech/badge/banger)](https://pepy.tech/projects/banger)
+
 ---
 
 # What it is?
