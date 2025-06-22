@@ -8,11 +8,8 @@
 # @link      https://github.com/MarcinOrlowski/banger
 #
 ##################################################################################
-#
-# Runs markdownlint on all *.md files
-#
 
-name: "MD Lint"
+name: "Markdown Lint"
 
 on:
   push:
@@ -23,7 +20,11 @@ on:
 jobs:
   markdown_lint:
     name: "Markdown linter"
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
 
     steps:
       # https://github.com/marketplace/actions/checkout

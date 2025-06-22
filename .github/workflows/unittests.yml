@@ -21,10 +21,12 @@ jobs:
   unittests:
     name: "Testing"
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        # quotes are needed it is treated as a number and zero at decimal part is gone at runtime
+        # quotes are needed it is treated as a number and zero at decimal part
+        # is gone at runtime (i.e "3.10" => 3.10, 3.10 => 3.1)
         python: [ "3.8", "3.12" ]
 
     steps:
