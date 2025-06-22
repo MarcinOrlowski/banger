@@ -59,6 +59,12 @@ dev = [
     "black>=23.0",
     "ruff>=0.1.0",
     "mypy>=1.0",
+    "wemake-python-styleguide",
+    "twine",
+    "faker",
+    "flake8",
+    "types-Markdown",
+    "python-dateutil",
 ]
 
 [tool.setuptools.packages.find]
