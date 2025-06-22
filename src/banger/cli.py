@@ -21,8 +21,7 @@ from .core import BannerGenerator
 from .terminal import get_terminal_width
 from .fonts import get_available_fonts
 from .config import get_config, create_config_template
-
-__version__ = "1.0.0"
+from .constants import Consts
 
 
 def expand_special_text(text: str) -> str:
@@ -54,7 +53,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="banger",
         description="Classic-style banner program that prints text in large letters",
-        epilog=f"Examples:\n  banger 'Hello World'                    # Basic usage\n  banger --font matrix 'TEXT'             # Use matrix font\n  banger --width 8 'ABC'                  # Set minimum character width\n  banger --banner-width 40 'Long Text'    # Limit total banner width\n  banger --font-list                      # List available fonts\n  banger --ttf-font /path/to/font.ttf 'Hi' # Use system font\n\nThis is banger {__version__}. Distributed under the GNU General Public License.",
+        epilog=f"Examples:\n  banger 'Hello World'                    # Basic usage\n  banger --font matrix 'TEXT'             # Use matrix font\n  banger --width 8 'ABC'                  # Set minimum character width\n  banger --banner-width 40 'Long Text'    # Limit total banner width\n  banger --font-list                      # List available fonts\n  banger --ttf-font /path/to/font.ttf 'Hi' # Use system font\n\nThis is {Consts.APP_NAME} {Consts.APP_VERSION}. Distributed under the GNU General Public License.",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
 
@@ -153,6 +152,12 @@ def create_parser() -> argparse.ArgumentParser:
         "--font-list",
         action="store_true",
         help="List all built-in font names in alphabetical order"
+    )
+
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"{Consts.APP_NAME} {Consts.APP_VERSION} - {Consts.APP_URL}"
     )
 
     parser.add_argument(
