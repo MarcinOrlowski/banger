@@ -149,4 +149,3 @@ ignore =
 #    # WPS604 Found incorrect node inside `class` body
 #    transtool/report/error.py: WPS420, WPS604,
 #    transtool/report/warn.py: WPS420, WPS604,
-
