@@ -60,6 +60,8 @@ dev = [
     "ruff>=0.1.0",
     "mypy>=1.0",
     "wemake-python-styleguide",
+    "wheel",
+    "build",
     "twine",
     "faker",
     "flake8",
