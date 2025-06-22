@@ -11,8 +11,6 @@
 ##################################################################################
 """
 
-"""Font factory and management."""
-
 from typing import Dict, Callable, List
 
 from .banner import BannerFont
@@ -27,18 +25,20 @@ from .quadrant import QuadrantFont
 from .shadow import ShadowFont
 from .small import SmallFont
 
+"""Font factory and management."""
+
 # Font factory - maps font names to factory functions
 BUILTIN_FONTS: Dict[str, Callable[[], FontInterface]] = {
-    'default': lambda: DefaultFont(),
-    'matrix': lambda: MatrixFont(),
-    'banner': lambda: BannerFont(),
-    'block': lambda: BlockFont(),
-    'blur': lambda: BlurFont(),
-    'compact': lambda: CompactFont(),
-    'fire': lambda: FireFont(),
-    'quadrant': lambda: QuadrantFont(),
-    'shadow': lambda: ShadowFont(),
-    'small': lambda: SmallFont(),
+    "default": lambda: DefaultFont(),
+    "matrix": lambda: MatrixFont(),
+    "banner": lambda: BannerFont(),
+    "block": lambda: BlockFont(),
+    "blur": lambda: BlurFont(),
+    "compact": lambda: CompactFont(),
+    "fire": lambda: FireFont(),
+    "quadrant": lambda: QuadrantFont(),
+    "shadow": lambda: ShadowFont(),
+    "small": lambda: SmallFont(),
 }
 
 
@@ -55,7 +55,7 @@ def create_font(name: str) -> FontInterface:
         return BUILTIN_FONTS[name]()
 
     # Fallback to default
-    return BUILTIN_FONTS['default']()
+    return BUILTIN_FONTS["default"]()
 
 
 def get_available_fonts() -> List[str]:

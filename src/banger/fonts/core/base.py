@@ -11,13 +11,13 @@
 ##################################################################################
 """
 
-"""Base font class providing common functionality."""
-
 from abc import ABC
-from typing import Dict, List, Optional, Set
+from typing import List, Optional, Set
 
 from .character_data import CharacterData
 from .font_metadata import FontMetadata
+
+"""Base font class providing common functionality."""
 
 
 class BaseFont(ABC):
@@ -32,11 +32,11 @@ class BaseFont(ABC):
     """
 
     _FONT_DATA = {
-        'name': '???',
-        'height': 7,
-        'description': '???',
-        'bottom_padding': 1,
-        'characters': {
+        "name": "???",
+        "height": 7,
+        "description": "???",
+        "bottom_padding": 1,
+        "characters": {
             "default": {
                 "lines": [
                     "# # #",
@@ -46,7 +46,7 @@ class BaseFont(ABC):
                     "# # #",
                 ]
             }
-        }
+        },
     }
 
     def __init__(self):
@@ -59,7 +59,7 @@ class BaseFont(ABC):
             supports_lowercase=self._FONT_DATA.get("supports_lowercase", True),
             supports_uppercase=self._FONT_DATA.get("supports_uppercase", True),
             supports_digits=self._FONT_DATA.get("supports_digits", True),
-            supports_punctuation=self._FONT_DATA.get("supports_punctuation", True)
+            supports_punctuation=self._FONT_DATA.get("supports_punctuation", True),
         )
 
         self._metadata = metadata
@@ -122,12 +122,20 @@ class BaseFont(ABC):
 
         if char not in characters:
             # If font doesn't support lowercase, try converting to uppercase
-            if char.islower() and not self._metadata.supports_lowercase and self._metadata.supports_uppercase:
+            if (
+                char.islower()
+                and not self._metadata.supports_lowercase
+                and self._metadata.supports_uppercase
+            ):
                 uppercase_char = char.upper()
                 if uppercase_char in characters:
                     char = uppercase_char
             # If font doesn't support uppercase, try converting to lowercase
-            elif char.isupper() and not self._metadata.supports_uppercase and self._metadata.supports_lowercase:
+            elif (
+                char.isupper()
+                and not self._metadata.supports_uppercase
+                and self._metadata.supports_lowercase
+            ):
                 lowercase_char = char.lower()
                 if lowercase_char in characters:
                     char = lowercase_char
@@ -150,17 +158,15 @@ class BaseFont(ABC):
         normalized_lines = self._normalize_character_lines(lines, trim=trim)
         width = self._calculate_character_width(normalized_lines, trim=trim)
 
-        return CharacterData(
-            lines=normalized_lines,
-            width=width,
-            trim=trim
-        )
+        return CharacterData(lines=normalized_lines, width=width, trim=trim)
 
     def _get_all_supported_characters(self) -> Set[str]:
         """Get all supported characters."""
         return set(self._FONT_DATA["characters"].keys())
 
-    def _normalize_character_lines(self, lines: List[str], trim: bool = True) -> List[str]:
+    def _normalize_character_lines(
+        self, lines: List[str], trim: bool = True
+    ) -> List[str]:
         """Normalize character lines to consistent width.
 
         Args:

@@ -9,11 +9,12 @@
 # @link      https://github.com/MarcinOrlowski/banger
 #
 ##################################################################################
+
+Command-line interface for banger.
 """
 
-"""Command-line interface for banger."""
-
 import argparse
+import string
 import sys
 
 from .config import get_config, create_config_template
@@ -34,9 +35,9 @@ def expand_special_text(text: str) -> str:
     """
     # Define replacements
     replacements = {
-        ':upper': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        ':lower': 'abcdefghijklmnopqrstuvwxyz',
-        ':digits': '0123456789'
+        ":upper": string.ascii_uppercase,
+        ":lower": string.ascii_lowercase,
+        ":digits": string.digits,
     }
 
     # Apply replacements
@@ -50,24 +51,26 @@ def expand_special_text(text: str) -> str:
 def create_parser() -> argparse.ArgumentParser:
     """Create argument parser."""
 
-    epilog = "\n".join([
-        f"Examples:",
-        f"  banger 'Hello World'                    # Basic usage",
-        f"  banger --font fire 'TEXT'               # Use fire font",
-        f"  banger --width 8 'ABC'                  # Set minimum character width (monospace)",
-        f"  banger --banner-width 40 'Long Text'    # Limit total banner width",
-        f"  banger --font-list                      # List available TTF/OTF fonts",
-        f"  banger --ttf-font /path/to/font.ttf 'Hi' # Use system font to render text",
-        f"",
-        f"This is {Consts.APP_NAME} {Consts.APP_VERSION}",
-        f"{Consts.APP_URL}",
-    ])
+    epilog = "\n".join(
+        [
+            "Examples:",
+            "  banger 'Hello World'                    # Basic usage",
+            "  banger --font fire 'TEXT'               # Use fire font",
+            "  banger --width 8 'ABC'                  # Set minimum character width (monospace)",
+            "  banger --banner-width 40 'Long Text'    # Limit total banner width",
+            "  banger --font-list                      # List available TTF/OTF fonts",
+            "  banger --ttf-font /path/to/font.ttf 'Hi' # Use system font to render text",
+            "",
+            f"This is {Consts.APP_NAME} {Consts.APP_VERSION}",
+            f"{Consts.APP_URL}",
+        ]
+    )
 
     parser = argparse.ArgumentParser(
         prog="banger",
         description="Prints text in large letters",
         epilog=epilog,
-        formatter_class=argparse.RawDescriptionHelpFormatter
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
     # Load configuration defaults
@@ -79,64 +82,66 @@ def create_parser() -> argparse.ArgumentParser:
         "--font",
         default=default_font,
         choices=available_fonts,
-        help=f"Built-in font to use for rendering (default: %(default)s)."
+        help="Built-in font to use for rendering (default: %(default)s).",
     )
 
     parser.add_argument(
         "--banner-width",
         type=int,
         metavar="CHARS",
-        help="Maximum total banner width in characters (default: auto-detect terminal width)"
+        help="Maximum total banner width in characters (default: auto-detect terminal width)",
     )
 
     def positive_int(value):
         ivalue = int(value)
         if ivalue <= 0:
-            raise argparse.ArgumentTypeError(f"--width must be a positive integer, got {value}")
+            raise argparse.ArgumentTypeError(
+                f"--width must be a positive integer, got {value}"
+            )
         return ivalue
 
     parser.add_argument(
         "--width",
         type=positive_int,
         metavar="CHARS",
-        help="Minimum recommended width for each character (default: use characters' real width)"
+        help="Minimum recommended width for each character (default: use characters' real width)",
     )
 
     parser.add_argument(
         "--demo",
         action="store_true",
-        help="Display sample text in all available built-in fonts"
+        help="Display sample text in all available built-in fonts",
     )
 
     parser.add_argument(
         "--demo-md",
         action="store_true",
-        help="Display all available fonts in Markdown format for documentation"
+        help="Display all available fonts in Markdown format for documentation",
     )
 
     parser.add_argument(
         "--config-init",
         action="store_true",
-        help="Create a template configuration file at ~/.config/banger/banger.yml"
+        help="Create a template configuration file at ~/.config/banger/banger.yml",
     )
 
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Force overwrite existing configuration file (use with --config-init)"
+        help="Force overwrite existing configuration file (use with --config-init)",
     )
 
     parser.add_argument(
         "--ttf-font",
         metavar="PATH",
-        help="Use a system TTF or OTF font file instead of built-in fonts"
+        help="Use a system TTF or OTF font file instead of built-in fonts",
     )
 
     parser.add_argument(
         "--ttf-size",
         type=positive_int,
         metavar="SIZE",
-        help="TTF font size in points (default: auto-calculated based on --ttf-lines)"
+        help="TTF font size in points (default: auto-calculated based on --ttf-lines)",
     )
 
     parser.add_argument(
@@ -144,13 +149,13 @@ def create_parser() -> argparse.ArgumentParser:
         type=positive_int,
         default=7,
         metavar="LINES",
-        help="Output height in terminal lines (default: %(default)s)"
+        help="Output height in terminal lines (default: %(default)s)",
     )
 
     parser.add_argument(
         "--ttf-list",
         action="store_true",
-        help="List available system TTF and OTF fonts"
+        help="List available system TTF and OTF fonts",
     )
 
     parser.add_argument(
@@ -158,25 +163,26 @@ def create_parser() -> argparse.ArgumentParser:
         choices=["name", "path"],
         default="path",
         metavar="SORT",
-        help="Sort TTF/OTF font list by name or path (default: %(default)s)"
+        help="Sort TTF/OTF font list by name or path (default: %(default)s)",
     )
 
     parser.add_argument(
         "--font-list",
         action="store_true",
-        help="List all built-in font names in alphabetical order"
+        help="List all built-in font names in alphabetical order",
     )
 
     parser.add_argument(
         "--version",
         action="version",
-        version=f"{Consts.APP_NAME} {Consts.APP_VERSION} - {Consts.APP_URL}"
+        version=f"{Consts.APP_NAME} {Consts.APP_VERSION} - {Consts.APP_URL}",
     )
 
     parser.add_argument(
         "text",
         nargs="*",
-        help="Text to convert to banner. Multiple arguments create separate banners. Special patterns: :upper (A-Z), :lower (a-z), :digits (0-9)"
+        help="Text to convert to banner. Multiple arguments create separate banners. "
+        "Special patterns: :upper (A-Z), :lower (a-z), :digits (0-9)",
     )
 
     return parser
@@ -190,13 +196,15 @@ def display_all_fonts() -> None:
 
     for font_name in available_fonts:
         # Print font name in normal text
-        print(f'---[ {font_name} ]---------------------------------------------------------\n')
+        print(
+            f"---[ {font_name} ]---------------------------------------------------------\n"
+        )
 
         # Determine what examples to show based on font capabilities
         examples = []
 
         # Add font name in different cases if supported
-        font_name_str = '';
+        font_name_str = ""
         if _font_supports_uppercase(font_name):
             font_name_str = font_name.upper()
         if _font_supports_lowercase(font_name):
@@ -316,25 +324,26 @@ def main() -> int:
             return e.code if e.code is not None else 1
 
     # Handle --demo option
-    if getattr(args, 'demo', False):
+    if getattr(args, "demo", False):
         display_all_fonts()
         return 0
 
     # Handle --demo-md option
-    if getattr(args, 'demo_md', False):
+    if getattr(args, "demo_md", False):
         display_all_fonts_markdown()
         return 0
 
     # Handle --config-init option
-    if getattr(args, 'config_init', False):
-        force_overwrite = getattr(args, 'force', False)
+    if getattr(args, "config_init", False):
+        force_overwrite = getattr(args, "force", False)
         create_config_template(force=force_overwrite)
         return 0
 
     # Handle --ttf-list option
-    if getattr(args, 'ttf_list', False):
+    if getattr(args, "ttf_list", False):
         from .fonts.ttf import list_system_ttf_fonts
-        sort_by = getattr(args, 'ttf_list_sort', 'path')
+
+        sort_by = getattr(args, "ttf_list_sort", "path")
         system_fonts = list_system_ttf_fonts(sort_by=sort_by)
         if system_fonts:
             try:
@@ -349,7 +358,7 @@ def main() -> int:
         return 0
 
     # Handle --font-list option
-    if getattr(args, 'font_list', False):
+    if getattr(args, "font_list", False):
         available_fonts = get_available_fonts()
         available_fonts.sort()  # Sort alphabetically
         print("Available built-in fonts:")
@@ -359,7 +368,7 @@ def main() -> int:
 
     # Handle TTF font usage
     font_name = args.font
-    if getattr(args, 'ttf_font', None):
+    if getattr(args, "ttf_font", None):
         try:
             from .fonts.ttf import TtfFont
 
@@ -383,20 +392,23 @@ def main() -> int:
         parser.error("argument text: expected at least one argument")
 
     # Use specified banner width or auto-detect terminal width
-    banner_width = args.banner_width if args.banner_width is not None else get_terminal_width()
+    banner_width = (
+        args.banner_width if args.banner_width is not None else get_terminal_width()
+    )
 
     # Process each text argument as a separate banner
     for word in args.text:
-        generator = BannerGenerator(max_width=banner_width, font=font_name,
-                                    character_width=args.width)
+        generator = BannerGenerator(
+            max_width=banner_width, font=font_name, character_width=args.width
+        )
 
         # Expand special text patterns first
         expanded_word = expand_special_text(word)
 
         # Convert all whitespace to spaces (original behavior)
         processed_word = expanded_word
-        for whitespace_char in '\t\n\r\v\f':
-            processed_word = processed_word.replace(whitespace_char, ' ')
+        for whitespace_char in "\t\n\r\v\f":
+            processed_word = processed_word.replace(whitespace_char, " ")
 
         generator.add_text(processed_word)
         print(generator.render(), end="")

@@ -11,10 +11,10 @@
 ##################################################################################
 """
 
-"""Font metadata structure for banner fonts."""
-
 from dataclasses import dataclass
 from typing import Optional
+
+"""Font metadata structure for banner fonts."""
 
 
 @dataclass
@@ -36,6 +36,7 @@ class FontMetadata:
         supports_punctuation: Whether font supports punctuation marks
         bottom_padding: Number of extra blank lines to add at bottom (default 1)
     """
+
     name: str
     height: int
     description: str

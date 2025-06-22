@@ -16,7 +16,7 @@
 
 class Consts:
     """Application constants."""
-    
+
     APP_NAME = "bänger"
     APP_VERSION = "1.0.0"
     APP_URL = "https://github.com/MarcinOrlowski/banger"

@@ -11,8 +11,6 @@
 ##################################################################################
 """
 
-"""Unit tests for font validation and integrity."""
-
 import unittest
 
 from banger.fonts import (
@@ -21,6 +19,8 @@ from banger.fonts import (
     get_available_fonts,
     get_font_characters,
 )
+
+"""Unit tests for font validation and integrity."""
 
 
 class TestFontValidation(unittest.TestCase):
@@ -53,7 +53,8 @@ class TestFontValidation(unittest.TestCase):
                             self.assertEqual(
                                 actual_height,
                                 expected_for_known_issue,
-                                f"Known issue: Character '{char}' in font '{font_name}' has {actual_height} lines, expected {expected_for_known_issue}",
+                                f"Known issue: Character '{char}' in font '{font_name}' has "
+                                f"{actual_height} lines, expected {expected_for_known_issue}",
                             )
                         else:
                             self.assertEqual(

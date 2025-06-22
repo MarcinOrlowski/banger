@@ -11,11 +11,11 @@
 ##################################################################################
 """
 
-"""Unit tests for font factory functionality."""
-
 import unittest
 
 from banger.fonts.factory import create_font, get_available_fonts
+
+"""Unit tests for font factory functionality."""
 
 
 class TestFontFactory(unittest.TestCase):
@@ -23,23 +23,23 @@ class TestFontFactory(unittest.TestCase):
 
     def test_create_font_with_valid_name(self):
         """Test that create_font creates valid font instances."""
-        font = create_font('default')
+        font = create_font("default")
 
         self.assertIsNotNone(font)
-        self.assertEqual(font.name, 'default')
+        self.assertEqual(font.name, "default")
         self.assertGreater(font.height, 0)
 
     def test_create_font_with_invalid_name_falls_back_to_default(self):
         """Test that create_font falls back to default for invalid names."""
-        font = create_font('nonexistent_font')
+        font = create_font("nonexistent_font")
 
         self.assertIsNotNone(font)
-        self.assertEqual(font.name, 'default')
+        self.assertEqual(font.name, "default")
 
     def test_create_font_creates_new_instances(self):
         """Test that create_font creates new instances each time (no caching)."""
-        font1 = create_font('default')
-        font2 = create_font('default')
+        font1 = create_font("default")
+        font2 = create_font("default")
 
         self.assertIsNotNone(font1)
         self.assertIsNotNone(font2)
@@ -51,14 +51,24 @@ class TestFontFactory(unittest.TestCase):
 
         self.assertIsInstance(font_types, list)
         self.assertGreater(len(font_types), 0)
-        self.assertIn('default', font_types)
+        self.assertIn("default", font_types)
 
     def test_get_available_font_types_contains_expected_fonts(self):
         """Test that get_available_font_types contains expected built-in fonts."""
         font_types = get_available_fonts()
 
-        expected_fonts = ['default', 'matrix', 'banner', 'block', 'blur',
-                          'compact', 'fire', 'quadrant', 'shadow', 'small']
+        expected_fonts = [
+            "default",
+            "matrix",
+            "banner",
+            "block",
+            "blur",
+            "compact",
+            "fire",
+            "quadrant",
+            "shadow",
+            "small",
+        ]
 
         for expected_font in expected_fonts:
             self.assertIn(expected_font, font_types)
@@ -77,19 +87,19 @@ class TestFontFactory(unittest.TestCase):
 
     def test_font_instances_have_required_interface(self):
         """Test that created font instances implement required interface."""
-        font = create_font('default')
+        font = create_font("default")
 
         # Test required properties
-        self.assertTrue(hasattr(font, 'name'))
-        self.assertTrue(hasattr(font, 'height'))
-        self.assertTrue(hasattr(font, 'metadata'))
+        self.assertTrue(hasattr(font, "name"))
+        self.assertTrue(hasattr(font, "height"))
+        self.assertTrue(hasattr(font, "metadata"))
 
         # Test required methods
-        self.assertTrue(hasattr(font, 'get_character'))
-        self.assertTrue(hasattr(font, 'get_available_characters'))
+        self.assertTrue(hasattr(font, "get_character"))
+        self.assertTrue(hasattr(font, "get_available_characters"))
         self.assertTrue(callable(font.get_character))
         self.assertTrue(callable(font.get_available_characters))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

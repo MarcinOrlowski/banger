@@ -11,16 +11,16 @@
 ##################################################################################
 """
 
+import unittest
+
+from banger.fonts import get_available_fonts
+from banger.fonts.factory import create_font
+
 """Unit tests for default character validation.
 
 Tests that all fonts have a properly defined, visible default character.
 The default character is critical as it's used as a fallback when requested characters are missing.
 """
-
-import unittest
-
-from banger.fonts import get_available_fonts
-from banger.fonts.factory import create_font
 
 
 class TestDefaultCharacter(unittest.TestCase):
@@ -37,8 +37,11 @@ class TestDefaultCharacter(unittest.TestCase):
                 font = create_font(font_name)
                 available_chars = set(font.get_available_characters())
 
-                self.assertIn('default', available_chars,
-                              f"Font '{font_name}' missing required 'default' character")
+                self.assertIn(
+                    "default",
+                    available_chars,
+                    f"Font '{font_name}' missing required 'default' character",
+                )
 
     def test_default_character_has_valid_data(self):
         """Test that default character has proper character data structure.
@@ -48,18 +51,24 @@ class TestDefaultCharacter(unittest.TestCase):
         for font_name in get_available_fonts():
             with self.subTest(font=font_name):
                 font = create_font(font_name)
-                default_char_data = font.get_character('default')
+                default_char_data = font.get_character("default")
 
-                self.assertIsNotNone(default_char_data,
-                                     f"Font '{font_name}' has None for default character data")
+                self.assertIsNotNone(
+                    default_char_data,
+                    f"Font '{font_name}' has None for default character data",
+                )
 
                 # Check that it has lines attribute
-                self.assertTrue(hasattr(default_char_data, 'lines'),
-                                f"Font '{font_name}' default character missing 'lines' attribute")
+                self.assertTrue(
+                    hasattr(default_char_data, "lines"),
+                    f"Font '{font_name}' default character missing 'lines' attribute",
+                )
 
                 # Check that it has width attribute
-                self.assertTrue(hasattr(default_char_data, 'width'),
-                                f"Font '{font_name}' default character missing 'width' attribute")
+                self.assertTrue(
+                    hasattr(default_char_data, "width"),
+                    f"Font '{font_name}' default character missing 'width' attribute",
+                )
 
     def test_default_character_has_visible_content(self):
         """Test that default character has at least one visible (non-empty after trimming) line.
@@ -70,18 +79,23 @@ class TestDefaultCharacter(unittest.TestCase):
         for font_name in get_available_fonts():
             with self.subTest(font=font_name):
                 font = create_font(font_name)
-                default_char_data = font.get_character('default')
+                default_char_data = font.get_character("default")
 
-                self.assertIsNotNone(default_char_data,
-                                     f"Font '{font_name}' has None for default character data")
+                self.assertIsNotNone(
+                    default_char_data,
+                    f"Font '{font_name}' has None for default character data",
+                )
 
                 lines = default_char_data.lines
 
                 # Check that at least one line has visible content after trimming
                 has_visible_content = any(line.strip() for line in lines)
 
-                self.assertTrue(has_visible_content,
-                                f"Font '{font_name}' default character has no visible content - all lines are empty or whitespace-only: {lines}")
+                self.assertTrue(
+                    has_visible_content,
+                    f"Font '{font_name}' default character has no visible content - "
+                    f"all lines are empty or whitespace-only: {lines}",
+                )
 
     def test_default_character_width_is_positive(self):
         """Test that default character has positive width.
@@ -91,17 +105,25 @@ class TestDefaultCharacter(unittest.TestCase):
         for font_name in get_available_fonts():
             with self.subTest(font=font_name):
                 font = create_font(font_name)
-                default_char_data = font.get_character('default')
+                default_char_data = font.get_character("default")
 
-                self.assertIsNotNone(default_char_data,
-                                     f"Font '{font_name}' has None for default character data")
+                self.assertIsNotNone(
+                    default_char_data,
+                    f"Font '{font_name}' has None for default character data",
+                )
 
                 width = default_char_data.width
-                self.assertIsInstance(width, int,
-                                      f"Font '{font_name}' default character width is not an integer: {type(width)}")
+                self.assertIsInstance(
+                    width,
+                    int,
+                    f"Font '{font_name}' default character width is not an integer: {type(width)}",
+                )
 
-                self.assertGreater(width, 0,
-                                   f"Font '{font_name}' default character has non-positive width: {width}")
+                self.assertGreater(
+                    width,
+                    0,
+                    f"Font '{font_name}' default character has non-positive width: {width}",
+                )
 
     def test_default_character_lines_match_font_height(self):
         """Test that default character has correct number of lines for font height.
@@ -113,16 +135,21 @@ class TestDefaultCharacter(unittest.TestCase):
                 font = create_font(font_name)
                 expected_height = font.height
 
-                default_char_data = font.get_character('default')
-                self.assertIsNotNone(default_char_data,
-                                     f"Font '{font_name}' has None for default character data")
+                default_char_data = font.get_character("default")
+                self.assertIsNotNone(
+                    default_char_data,
+                    f"Font '{font_name}' has None for default character data",
+                )
 
                 lines = default_char_data.lines
                 actual_height = len(lines)
 
-                self.assertEqual(actual_height, expected_height,
-                                 f"Font '{font_name}' default character has {actual_height} lines, expected {expected_height}")
+                self.assertEqual(
+                    actual_height,
+                    expected_height,
+                    f"Font '{font_name}' default character has {actual_height} lines, expected {expected_height}",
+                )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

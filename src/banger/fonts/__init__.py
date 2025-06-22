@@ -11,23 +11,17 @@
 ##################################################################################
 """
 
-"""Unified fonts package - clean and simple.
-
-This package contains all font-related functionality:
-- Core font system (interfaces, base classes, utilities)
-- Built-in font implementations
-- Font registry and management
-- Public API functions
-- Style-specific definitions
-"""
-
 # Import constants
 from .constants import DEFAULT_CHAR_SPACING, MANDATORY_CHARACTERS
 
 # Import core font system
 from .core import (
-    CharacterData, FontMetadata, FontInterface, BaseFont,
-    calculate_character_width, normalize_character_lines
+    CharacterData,
+    FontMetadata,
+    FontInterface,
+    BaseFont,
+    calculate_character_width,
+    normalize_character_lines,
 )
 
 # Import fonts
@@ -39,31 +33,47 @@ from .factory import create_font, get_available_fonts
 
 # Import API functions
 from .api import (
-    get_available_fonts, get_font_height, get_font_characters,
-    get_character_data, _get_character_data_object, validate_font_character_coverage,
-    get_all_fonts_validation_report, get_max_character_width,
-    _font_supports_lowercase, _font_supports_uppercase
+    get_font_height,
+    get_font_characters,
+    get_character_data,
+    validate_font_character_coverage,
+    get_all_fonts_validation_report,
+    get_max_character_width,
 )
+
+"""Unified fonts package - clean and simple.
+
+This package contains all font-related functionality:
+- Core font system (interfaces, base classes, utilities)
+- Built-in font implementations
+- Font registry and management
+- Public API functions
+- Style-specific definitions
+"""
 
 
 __all__ = [
     # Constants
     "DEFAULT_CHAR_SPACING",
     "MANDATORY_CHARACTERS",
-
     # Core font system
-    "CharacterData", "FontMetadata", "FontInterface", "BaseFont",
-    "calculate_character_width", "normalize_character_lines",
-
+    "CharacterData",
+    "FontMetadata",
+    "FontInterface",
+    "BaseFont",
+    "calculate_character_width",
+    "normalize_character_lines",
     # Built-in fonts
-    "DefaultFont", "MatrixFont",
-
+    "DefaultFont",
+    "MatrixFont",
     # Factory
-    "create_font", "get_available_fonts",
-
+    "create_font",
+    "get_available_fonts",
     # API functions
-    "get_available_fonts", "get_font_height", "get_font_characters",
-    "get_character_data", "_get_character_data_object", "validate_font_character_coverage",
-    "get_all_fonts_validation_report", "get_max_character_width",
-    "_font_supports_lowercase", "_font_supports_uppercase"
+    "get_font_height",
+    "get_font_characters",
+    "get_character_data",
+    "validate_font_character_coverage",
+    "get_all_fonts_validation_report",
+    "get_max_character_width",
 ]

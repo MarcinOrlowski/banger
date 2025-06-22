@@ -17,5 +17,6 @@ This module provides backward compatibility with the old JSON-based font system
 while integrating with the new class-based font architecture.
 """
 
-# Import everything from the fonts package
-from .fonts import *
+# This module provides backward compatibility with the old JSON-based font system
+# while integrating with the new class-based font architecture.
+# All functionality should be imported directly from the fonts package.
