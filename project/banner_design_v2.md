@@ -16,7 +16,7 @@ compatibility while leveraging Python's strengths for maintainability and distri
 
 ### Package Structure (Simplified)
 
-```
+```ascii
 banger/
 ├── src/
 │   └── banner/
@@ -111,7 +111,7 @@ def get_terminal_width():
     return 80
 ```
 
-#### 4. CLI Interface (__main__.py)
+#### 4. CLI Interface (**main**.py)
 
 ```python
 import sys
@@ -150,58 +150,67 @@ def main():
 ### Key Implementation Details
 
 1. **Text Processing**:
-  - Convert to uppercase: `text.upper()`
-  - Normalize whitespace: Replace all whitespace with spaces
-  - Handle each argument as separate banner
 
-2. **Truncation Logic**:
-  - Check line length before adding each character
-  - Stop adding characters when width exceeded
-  - No partial character rendering
+- Convert to uppercase: `text.upper()`
+- Normalize whitespace: Replace all whitespace with spaces
+- Handle each argument as separate banner
 
-3. **Output Format**:
-  - Leading newline before banner
-  - Each line of banner
-  - Trailing newline after banner
-  - Right-side spaces trimmed from each line
+1. **Truncation Logic**:
 
-4. **Error Handling**:
-  - Unknown characters silently ignored
-  - Width detection failures default to 80
-  - No exceptions thrown to user
+- Check line length before adding each character
+- Stop adding characters when width exceeded
+- No partial character rendering
+
+1. **Output Format**:
+
+- Leading newline before banner
+- Each line of banner
+- Trailing newline after banner
+- Right-side spaces trimmed from each line
+
+1. **Error Handling**:
+
+- Unknown characters silently ignored
+- Width detection failures default to 80
+- No exceptions thrown to user
 
 ### Testing Strategy
 
 1. **Compatibility Tests**:
-  - Compare output with reference C implementation
-  - Test all supported characters
-  - Verify truncation behavior
 
-2. **Unit Tests**:
-  - Character rendering
-  - Width detection
-  - Text preprocessing
+- Compare output with reference C implementation
+- Test all supported characters
+- Verify truncation behavior
 
-3. **Integration Tests**:
-  - CLI argument handling
-  - Multi-word banners
-  - Edge cases (empty input, special chars)
+1. **Unit Tests**:
+
+- Character rendering
+- Width detection
+- Text preprocessing
+
+1. **Integration Tests**:
+
+- CLI argument handling
+- Multi-word banners
+- Edge cases (empty input, special chars)
 
 ### Distribution Plan
 
 1. **Package Metadata**:
+
    ```toml
    [project]
    name = "banger"
    version = "1.0.0"
    description = "Classic Unix banner command in Python"
    requires-python = ">=3.8"
-   
+
    [project.scripts]
    banner = "banner.__main__:main"
    ```
 
-2. **Installation**:
+1. **Installation**:
+
    ```ascii
    pip install banger
    banger "HELLO WORLD"
@@ -230,19 +239,22 @@ def main():
 ### Development Phases
 
 1. **Phase 1**: Core implementation (1 day)
-  - Character definitions
-  - Banner generation logic
-  - Basic CLI
 
-2. **Phase 2**: Compatibility (0.5 day)
-  - Terminal width detection
-  - Exact output matching
-  - Edge case handling
+- Character definitions
+- Banner generation logic
+- Basic CLI
 
-3. **Phase 3**: Packaging (0.5 day)
-  - Setup packaging files
-  - Create test suite
-  - Documentation
+1. **Phase 2**: Compatibility (0.5 day)
+
+- Terminal width detection
+- Exact output matching
+- Edge case handling
+
+1. **Phase 3**: Packaging (0.5 day)
+
+- Setup packaging files
+- Create test suite
+- Documentation
 
 ### Success Criteria
 

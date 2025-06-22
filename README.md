@@ -68,13 +68,15 @@ $ banger --ttf-font ~/.fonts/j/JetBrainsMonoNL_Regular.ttf --ttf-size 70 --ttf-l
 
 ## Documentation
 
-Please see the [documentation](docs/README.md) for detailed instructions on how to install and use
-`Bänger`.
+- [Installation guide](docs/README.md#installation)
+- [Project documentation](docs/README.md)
+- [Usage examples](docs/README.md#usage)
+- [What's new?](CHANGES.md)
 
 ---
 
 ## License
 
-* Written and copyrighted &copy;2025 by Marcin Orlowski <https://marcinOrlowski.com>
-* Banger is the open-sourced software licensed under
+- Written and copyrighted &copy;2025 by Marcin Orlowski <https://marcinOrlowski.com>
+- Banger is the open-sourced software licensed under
   the [MIT license](http://opensource.org/licenses/MIT)

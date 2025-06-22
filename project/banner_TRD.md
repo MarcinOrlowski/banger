@@ -38,10 +38,10 @@ SPACE_WIDTH = 2
 class Banner:
     def __init__(self, max_width=None):
         self.max_width = max_width or get_terminal_width()
-    
+
     def render(self, text: str) -> str:
         """Convert text to banner format"""
-        
+
 # CLI entry point
 banner-cli "TEXT" -> prints banner
 banner-cli --help -> shows usage

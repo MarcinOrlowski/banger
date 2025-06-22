@@ -106,7 +106,7 @@ banger "Hello"
 
 # Whitespace handling
 banger "HELLO WORLD"
-banger "HELLO	WORLD"  # Tab
+banger "HELLO    WORLD"  # Tab
 banger "HELLO
 WORLD"  # Newline
 
