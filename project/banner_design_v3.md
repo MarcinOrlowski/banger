@@ -10,7 +10,7 @@ for PyPI distribution and installation via pip/pipx.
 ```ascii
 banger/
 ├── src/
-│   └── banner_ng/
+│   └── banger/
 │       ├── __init__.py
 │       ├── __main__.py      # Entry point for `python -m banner_ng`
 │       ├── cli.py           # CLI logic and argument parsing
@@ -26,7 +26,7 @@ banger/
 ├── .gitignore
 ├── .python-version          # Python 3.8
 ├── CHANGELOG.md
-├── LICENSE                  # MIT or GPL to match original
+├── LICENSE                  # MIT to match original
 ├── README.md
 ├── pyproject.toml          # Modern Python packaging
 └── tox.ini                 # Testing across Python versions
@@ -46,7 +46,7 @@ name = "banger"
 version = "1.0.0"
 description = "Classic Unix banner command reimplemented in Python"
 readme = "README.md"
-license = { text = "GPL-2.0" }
+license = { text = "MIT" }
 authors = [
     { name = "Your Name", email = "your.email@example.com" }
 ]
@@ -54,7 +54,7 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
