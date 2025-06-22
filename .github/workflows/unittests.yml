@@ -21,10 +21,13 @@ jobs:
   unittests:
     name: "Testing"
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        # quotes are needed it is treated as a number and zero at decimal part is gone at runtime
+        # quotes are needed as YAML treats unquoted versions as floats and
+        # drops trailing zeros (i.e "3.10" => 3.10, 3.10 => 3.1),
+        # so quotes are required.
         python: [ "3.8", "3.12" ]
 
     steps:
