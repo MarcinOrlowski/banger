@@ -322,21 +322,21 @@ twine upload dist/*
 
 ### Key Design Decisions
 
-1. **Source Layout**: Using `src/` layout prevents accidental imports during testing
-1. **Modern Packaging**: pyproject.toml instead of setup.py for future-proofing
-1. **No Dependencies**: Pure Python implementation for maximum compatibility
-1. **Type Hints**: Full type annotations for better IDE support and documentation
-1. **Testing**: Comprehensive test suite with tox for multiple Python versions
-1. **pipx Friendly**: Designed as a CLI tool, perfect for pipx installation
+1. __Source Layout__: Using `src/` layout prevents accidental imports during testing
+1. __Modern Packaging__: pyproject.toml instead of setup.py for future-proofing
+1. __No Dependencies__: Pure Python implementation for maximum compatibility
+1. __Type Hints__: Full type annotations for better IDE support and documentation
+1. __Testing__: Comprehensive test suite with tox for multiple Python versions
+1. __pipx Friendly__: Designed as a CLI tool, perfect for pipx installation
 
 ### Benefits of This Structure
 
-1. **Professional**: Follows Python packaging best practices
-1. **Maintainable**: Clear separation of concerns
-1. **Testable**: Easy to test individual components
-1. **Distributable**: Ready for PyPI upload
-1. **Cross-platform**: Works on Windows, macOS, and Linux
-1. **Future-proof**: Uses modern Python packaging standards
+1. __Professional__: Follows Python packaging best practices
+1. __Maintainable__: Clear separation of concerns
+1. __Testable__: Easy to test individual components
+1. __Distributable__: Ready for PyPI upload
+1. __Cross-platform__: Works on Windows, macOS, and Linux
+1. __Future-proof__: Uses modern Python packaging standards
 
 This structure ensures the package is properly organized from the start and ready for
 distribution on PyPI, making it easy for users to install with either pip or pipx.
