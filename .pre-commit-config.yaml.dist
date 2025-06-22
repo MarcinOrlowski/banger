@@ -95,9 +95,12 @@ repos:
 #        language_version: python3.12
 
   # https://github.com/pre-commit/pre-commit-hooks
-  -   repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v5.0.0  # Use the ref you want to point at
-      hooks:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0  # Use the ref you want to point at
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
       - id: trailing-whitespace
       - id: check-json
       - id: check-yaml
