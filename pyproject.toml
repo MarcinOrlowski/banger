@@ -63,6 +63,8 @@ dev = [
     "twine",
     "faker",
     "flake8",
+    "flake8-noqa",
+    "flake8-docstrings",
     "types-Markdown",
     "python-dateutil",
 ]

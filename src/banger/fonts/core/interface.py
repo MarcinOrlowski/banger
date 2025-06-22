@@ -11,16 +11,15 @@
 ##################################################################################
 """
 
-"""Font interface protocol for banner fonts."""
-
 from typing import Protocol, Set, Optional
 from .character_data import CharacterData
 from .font_metadata import FontMetadata
 
+"""Font interface protocol for banner fonts."""
+
 
 class FontInterface(Protocol):
-    """Protocol defining the interface that all banner fonts must implement.
-    """
+    """Protocol defining the interface that all banner fonts must implement."""
 
     @property
     def metadata(self) -> FontMetadata:

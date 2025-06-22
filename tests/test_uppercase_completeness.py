@@ -11,17 +11,17 @@
 ##################################################################################
 """
 
+import unittest
+
+from banger.fonts import get_available_fonts
+from banger.fonts.factory import create_font
+
 """Unit tests for uppercase letter completeness validation.
 
 Tests that fonts claiming to support uppercase letters actually implement
 all A-Z characters with proper data structures (non-empty lines list).
 Characters can have empty content (0 lit pixels) but must exist with valid structure.
 """
-
-import unittest
-
-from banger.fonts import get_available_fonts
-from banger.fonts.factory import create_font
 
 
 class TestUppercaseCompleteness(unittest.TestCase):

@@ -75,9 +75,21 @@ repos:
       - id: php-stan
         files: \.(php)$
 
-  - repo: https://github.com/psf/black
+  # https://dev.to/m1yag1/how-to-setup-your-project-with-pre-commit-black-and-flake8-183k
+  - repo: https://github.com/ambv/black
     rev: 25.1.0
     hooks:
       - id: black
-        args: [--line-length=88]
         language_version: python3.12
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        additional_dependencies: [flake8-docstrings]
+
+#  - repo: https://github.com/psf/black
+#    rev: 25.1.0
+#    hooks:
+#      - id: black
+#        args: [--line-length=88]
+#        language_version: python3.12

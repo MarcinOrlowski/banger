@@ -11,12 +11,12 @@
 ##################################################################################
 """
 
-"""Main API functions for font operations."""
-
 from typing import List, Dict, Any
 
 from .factory import get_available_fonts as _get_available_font_types, create_font
 from .constants import MANDATORY_CHARACTERS
+
+"""Main API functions for font operations."""
 
 
 def get_available_fonts() -> List[str]:
@@ -56,9 +56,9 @@ def get_font_characters(font_name: str) -> Dict[str, Dict[str, Any]]:
         char_data = font.get_character(char)
         if char_data:
             characters[char] = {
-                'lines': char_data.lines,
-                'width': char_data.width,
-                'trim': getattr(char_data, 'trim', True)
+                "lines": char_data.lines,
+                "width": char_data.width,
+                "trim": getattr(char_data, "trim", True),
             }
     return characters
 
@@ -77,9 +77,9 @@ def get_character_data(char: str, font_name: str):
     char_data = font.get_character(char)
     if char_data:
         return {
-            'lines': getattr(char_data, 'lines', []),
-            'width': getattr(char_data, 'width', 0),
-            'trim': getattr(char_data, 'trim', True)
+            "lines": getattr(char_data, "lines", []),
+            "width": getattr(char_data, "width", 0),
+            "trim": getattr(char_data, "trim", True),
         }
     return None
 
@@ -112,13 +112,13 @@ def validate_font_character_coverage(font: str) -> Dict[str, Any]:
         if font not in available_fonts:
             # Font doesn't exist
             return {
-                'font': font,
-                'total_mandatory': len(MANDATORY_CHARACTERS),
-                'available': 0,
-                'missing': len(MANDATORY_CHARACTERS),
-                'missing_characters': list(MANDATORY_CHARACTERS),
-                'coverage_percentage': 0.0,
-                'is_complete': False
+                "font": font,
+                "total_mandatory": len(MANDATORY_CHARACTERS),
+                "available": 0,
+                "missing": len(MANDATORY_CHARACTERS),
+                "missing_characters": list(MANDATORY_CHARACTERS),
+                "coverage_percentage": 0.0,
+                "is_complete": False,
             }
 
         # Get font characters
@@ -135,24 +135,24 @@ def validate_font_character_coverage(font: str) -> Dict[str, Any]:
         coverage_percentage = (available_count / total_mandatory) * 100.0
 
         return {
-            'font': font,
-            'total_mandatory': total_mandatory,
-            'available': available_count,
-            'missing': missing_count,
-            'missing_characters': list(missing_chars),
-            'coverage_percentage': coverage_percentage,
-            'is_complete': missing_count == 0
+            "font": font,
+            "total_mandatory": total_mandatory,
+            "available": available_count,
+            "missing": missing_count,
+            "missing_characters": list(missing_chars),
+            "coverage_percentage": coverage_percentage,
+            "is_complete": missing_count == 0,
         }
     except Exception:
         # Error case - return zero coverage
         return {
-            'font': font,
-            'total_mandatory': len(MANDATORY_CHARACTERS),
-            'available': 0,
-            'missing': len(MANDATORY_CHARACTERS),
-            'missing_characters': list(MANDATORY_CHARACTERS),
-            'coverage_percentage': 0.0,
-            'is_complete': False
+            "font": font,
+            "total_mandatory": len(MANDATORY_CHARACTERS),
+            "available": 0,
+            "missing": len(MANDATORY_CHARACTERS),
+            "missing_characters": list(MANDATORY_CHARACTERS),
+            "coverage_percentage": 0.0,
+            "is_complete": False,
         }
 
 
@@ -197,7 +197,7 @@ def _font_supports_lowercase(font_name: str) -> bool:
     font = create_font(font_name)
     supported_chars = font.get_available_characters()
     # Check if font has any lowercase letters
-    lowercase_letters = set('abcdefghijklmnopqrstuvwxyz')
+    lowercase_letters = set("abcdefghijklmnopqrstuvwxyz")
     return bool(lowercase_letters.intersection(supported_chars))
 
 
@@ -206,5 +206,5 @@ def _font_supports_uppercase(font_name: str) -> bool:
     font = create_font(font_name)
     supported_chars = font.get_available_characters()
     # Check if font has any uppercase letters
-    uppercase_letters = set('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    uppercase_letters = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     return bool(uppercase_letters.intersection(supported_chars))

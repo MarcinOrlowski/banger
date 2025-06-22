@@ -25,9 +25,9 @@
 #    ·X      XX      XX      XX      XX
 """
 
-"""Unicode quadrant block font."""
-
 from .core.base import BaseFont
+
+"""Unicode quadrant block font."""
 
 
 class QuadrantFont(BaseFont):
@@ -701,15 +701,6 @@ class QuadrantFont(BaseFont):
                     " ▄▀",
                     "▄▀",
                     "█",
-                    "",
-                ]
-            },
-            ":": {
-                "lines": [
-                    "▄",
-                    "▀",
-                    "▄",
-                    "▀",
                     "",
                 ]
             },

@@ -11,13 +11,13 @@
 ##################################################################################
 """
 
-"""Core font system components."""
-
 from .character_data import CharacterData
 from .font_metadata import FontMetadata
 from .interface import FontInterface
 from .base import BaseFont
 from .utils import calculate_character_width, normalize_character_lines
+
+"""Core font system components."""
 
 __all__ = [
     "CharacterData",
@@ -25,5 +25,5 @@ __all__ = [
     "FontInterface",
     "BaseFont",
     "calculate_character_width",
-    "normalize_character_lines"
+    "normalize_character_lines",
 ]

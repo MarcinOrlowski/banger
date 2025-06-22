@@ -11,17 +11,17 @@
 ##################################################################################
 """
 
+import unittest
+
+from banger.fonts import get_available_fonts
+from banger.fonts.factory import create_font
+
 """Unit tests for digits completeness validation.
 
 Tests that fonts claiming to support digits actually implement
 all 0-9 characters with proper data structures (non-empty lines list).
 Characters can have empty content (0 lit pixels) but must exist with valid structure.
 """
-
-import unittest
-
-from banger.fonts import get_available_fonts
-from banger.fonts.factory import create_font
 
 
 class TestDigitsCompleteness(unittest.TestCase):

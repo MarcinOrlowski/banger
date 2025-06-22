@@ -9,27 +9,38 @@
 # @link      https://github.com/MarcinOrlowski/banger
 #
 ##################################################################################
-"""
 
-"""Core banner generation logic with proportional font support."""
+Core banner generation logic with proportional font support.
+"""
 
 from typing import List, Optional, Union
 
-from .fonts import _get_character_data_object, get_font_height, DEFAULT_CHAR_SPACING, create_font
+from .fonts import (
+    _get_character_data_object,
+    get_font_height,
+    DEFAULT_CHAR_SPACING,
+    create_font,
+)
 from .terminal import get_terminal_width
 
 
 class BannerGenerator:
     """Generate banners from text using ASCII art characters with proportional spacing support."""
 
-    def __init__(self, max_width: Optional[int] = None, font: Union[str, any] = "quadrant",
-                 character_width: Optional[int] = None):
+    def __init__(
+        self,
+        max_width: Optional[int] = None,
+        font: Union[str, any] = "quadrant",
+        character_width: Optional[int] = None,
+    ):
         """Initialize banner generator.
 
         Args:
             max_width: Maximum width for banner lines. If None, uses terminal width.
             font: Font name (str) or font object to use for rendering
-            character_width: Minimum width for each character. If not provided, each character takes as much space as it needs, making each font proportional. Setting custom widht will enforce min fixed width of the character which makes each font act as monospaced.
+            character_width: Minimum width for each character. If not provided, each character
+                takes as much space as it needs, making each font proportional. Setting custom width
+                will enforce min fixed width of the character which makes each font act as monospaced.
         """
         self.max_width = max_width or get_terminal_width()
         self.font = font
@@ -44,7 +55,7 @@ class BannerGenerator:
             self._font_obj = font
             self.font_height = font.height
 
-        self.lines: List[str] = [''] * self.font_height
+        self.lines: List[str] = [""] * self.font_height
         self._truncated = False
 
     def _clip_character_lines(self, char_lines: List[str], min_width: int) -> List[str]:
@@ -92,7 +103,9 @@ class BannerGenerator:
                 # Try to get default character as fallback
                 char_data = self._font_obj.get_character("default")
                 if char_data is None:
-                    raise RuntimeError(f"TTF font missing both character '{char}' and 'default' fallback")
+                    raise RuntimeError(
+                        f"TTF font missing both character '{char}' and 'default' fallback"
+                    )
         else:
             # Font name string - use existing API
             char_data = _get_character_data_object(char, self.font)
@@ -100,19 +113,26 @@ class BannerGenerator:
                 # Try to get default character as fallback
                 char_data = _get_character_data_object("default", self.font)
                 if char_data is None:
-                    raise RuntimeError(f"Font '{self.font}' missing both character '{char}' and 'default' fallback")
+                    raise RuntimeError(
+                        f"Font '{self.font}' missing both character '{char}' and 'default' fallback"
+                    )
             # If we got default, continue processing it
 
         char_lines = char_data.lines
-        char_width = char_data.width  # This is now calculated dynamically in get_character_data()
+        char_width = (
+            char_data.width
+        )  # This is now calculated dynamically in get_character_data()
 
         # Determine effective width and modify character lines if needed
         if self.character_width is not None:
             # Character width override: clip characters to calculated width based on minimum
             char_lines = self._clip_character_lines(char_lines, self.character_width)
             # Calculate actual effective width from the clipped lines (lines are already right-stripped from get_character_data)
-            effective_width = max(
-                len(line) for line in char_lines) if char_lines else self.character_width
+            effective_width = (
+                max(len(line) for line in char_lines)
+                if char_lines
+                else self.character_width
+            )
         else:
             # Proportional mode: use natural character width (lines are already normalized)
             effective_width = char_width
@@ -129,7 +149,7 @@ class BannerGenerator:
         # Add the character with spacing (same for both modes)
         for i in range(self.font_height):
             if self.lines[i]:  # Not first character, add spacing
-                self.lines[i] += ' ' * DEFAULT_CHAR_SPACING + char_lines[i]
+                self.lines[i] += " " * DEFAULT_CHAR_SPACING + char_lines[i]
             else:
                 self.lines[i] += char_lines[i]
 
@@ -156,15 +176,15 @@ class BannerGenerator:
 
         # Add bottom padding based on font configuration
         bottom_padding = 1  # default
-        if self._font_obj and hasattr(self._font_obj, 'bottom_padding'):
+        if self._font_obj and hasattr(self._font_obj, "bottom_padding"):
             bottom_padding = self._font_obj.bottom_padding
 
         # Add empty lines for bottom padding
-        padding_lines = [''] * bottom_padding
+        padding_lines = [""] * bottom_padding
         all_lines = stripped_lines + padding_lines
 
         # Format with newlines
-        return '\n'.join(all_lines) + '\n'
+        return "\n".join(all_lines) + "\n"
 
     def is_truncated(self) -> bool:
         """Check if the banner was truncated.

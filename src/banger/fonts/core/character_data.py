@@ -11,9 +11,9 @@
 ##################################################################################
 """
 
-"""Character data structure for banner fonts."""
-
 from typing import List, NamedTuple
+
+"""Character data structure for banner fonts."""
 
 
 class CharacterData(NamedTuple):
@@ -27,6 +27,7 @@ class CharacterData(NamedTuple):
         width: Width of the character in columns
         trim: Whether trailing spaces should be trimmed (default True)
     """
+
     lines: List[str]
     width: int
     trim: bool = True

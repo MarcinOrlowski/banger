@@ -1,5 +1,4 @@
 /.pre-commit-config.yaml
-
 /.flake8
 
 /.idea/
@@ -72,6 +71,5 @@ package-lock.json
 .roomodes
 
 /.pre-commit-config.yaml
-
 
 .coverage

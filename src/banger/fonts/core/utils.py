@@ -11,9 +11,9 @@
 ##################################################################################
 """
 
-"""Font utilities for character processing."""
-
 from typing import List
+
+"""Font utilities for character processing."""
 
 
 def calculate_character_width(lines: List[str], trim: bool = True) -> int:

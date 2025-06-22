@@ -11,17 +11,17 @@
 ##################################################################################
 """
 
+import unittest
+
+from banger.fonts import get_available_fonts
+from banger.fonts.factory import create_font
+
 """Unit tests for extra characters completeness validation.
 
 Tests that fonts properly implement extra characters (punctuation, symbols, special characters)
 that are neither letters nor digits. Based on the character set available in the quadrant font
 as the reference implementation.
 """
-
-import unittest
-
-from banger.fonts import get_available_fonts
-from banger.fonts.factory import create_font
 
 
 class TestExtraCharactersCompleteness(unittest.TestCase):

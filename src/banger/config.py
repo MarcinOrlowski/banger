@@ -9,9 +9,9 @@
 # @link      https://github.com/MarcinOrlowski/banger
 #
 ##################################################################################
-"""
 
-"""Configuration management for banger."""
+Configuration management for banger.
+"""
 
 import sys
 from pathlib import Path
@@ -48,23 +48,23 @@ class Config:
             return
 
         try:
-            with open(config_path, 'r', encoding='utf-8') as f:
+            with open(config_path, "r", encoding="utf-8") as f:
                 self.config_data = yaml.safe_load(f) or {}
-        except (yaml.YAMLError, OSError) as e:
+        except (yaml.YAMLError, OSError):
             # Silently ignore config file errors - use defaults
             self.config_data = {}
 
     def get_font(self) -> Optional[str]:
         """Get the default font from configuration."""
-        return self.config_data.get('font')
+        return self.config_data.get("font")
 
     def get_banner_width(self) -> Optional[int]:
         """Get the default banner width from configuration."""
-        return self.config_data.get('banner_width')
+        return self.config_data.get("banner_width")
 
     def get_width(self) -> Optional[int]:
         """Get the default character width from configuration."""
-        return self.config_data.get('width')
+        return self.config_data.get("width")
 
 
 # Global configuration instance
@@ -93,8 +93,13 @@ def create_config_template(force: bool = False) -> bool:
 
     # Check if config file already exists
     if config_path.exists() and not force:
-        print(f"Error: Configuration file already exists at {config_path}", file=sys.stderr)
-        print("Use --force to overwrite the existing configuration file.", file=sys.stderr)
+        print(
+            f"Error: Configuration file already exists at {config_path}",
+            file=sys.stderr,
+        )
+        print(
+            "Use --force to overwrite the existing configuration file.", file=sys.stderr
+        )
         sys.exit(1)
 
     # Create config directory if it doesn't exist
@@ -117,7 +122,7 @@ def create_config_template(force: bool = False) -> bool:
 
     # Write template to file
     try:
-        with open(config_path, 'w', encoding='utf-8') as f:
+        with open(config_path, "w", encoding="utf-8") as f:
             f.write(template_content)
 
         print(f"Configuration template created at: {config_path}")

@@ -11,9 +11,9 @@
 ##################################################################################
 """
 
-"""Matrix built-in font."""
-
 from .core import BaseFont
+
+"""Matrix built-in font."""
 
 
 class MatrixFont(BaseFont):

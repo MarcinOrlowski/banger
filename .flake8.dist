@@ -4,7 +4,7 @@
 #
 # in venv
 # pip install wemake-python-styleguide
-# flake8 src/
+# flake8 src/ test/
 #
 # Refactoring hints:
 # https://flake8.codes/wemake-python-styleguide/0.15.3/index.html
@@ -142,7 +142,25 @@ ignore =
     # Short variable names (WPS111)
     WPS111,
     # Too many return statements (WPS212)
-    WPS212
+    WPS212,
+    # Additional stylistic rules to ignore
+    WPS100,
+    WPS118,
+    WPS202,
+    WPS230,
+    WPS327,
+    WPS358,
+    WPS407,
+    WPS410,
+    WPS412,
+    WPS432,
+    WPS435,
+    WPS441,
+    WPS447,
+    WPS448,
+    WPS504,
+    WPS506,
+    WPS529
 
 #per-file-ignores =
 #    # WPS420 Found wrong keyword: pass

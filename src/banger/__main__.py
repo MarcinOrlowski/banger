@@ -11,9 +11,9 @@
 ##################################################################################
 """
 
-"""Allow banger to be run as python -m banger."""
-
 from .cli import main
+
+"""Allow banger to be run as python -m banger."""
 
 if __name__ == "__main__":
     main()

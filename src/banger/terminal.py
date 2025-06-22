@@ -11,10 +11,10 @@
 ##################################################################################
 """
 
-"""Terminal utilities for bang"""
-
 import os
 import shutil
+
+"""Terminal utilities for bang"""
 
 
 def get_terminal_width() -> int:
@@ -29,9 +29,9 @@ def get_terminal_width() -> int:
         Terminal width in columns
     """
     # 1. Check COLUMNS env var (original behavior)
-    if 'COLUMNS' in os.environ:
+    if "COLUMNS" in os.environ:
         try:
-            width = int(os.environ['COLUMNS'])
+            width = int(os.environ["COLUMNS"])
             if width > 0:
                 return width
         except ValueError:
