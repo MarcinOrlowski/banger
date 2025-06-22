@@ -22,9 +22,12 @@
 █   █ ▀▄▄▀ █  █ ▀▄▄▀
 ```
 
-* Banger
+* Bänger
   * [What it is?](#what-it-is)
   * [Key Features](#key-features)
+* Installation
+  * [Requirements](#requirements)
+  * [Installation](#installation)
 * Usage and Features
   * [Quick Start](#quick-start)
   * [Special Text Patterns](#special-text-patterns)
@@ -38,7 +41,7 @@
   * [How Configuration Works](#how-configuration-works)
 * [What's New?](../CHANGES.md)
 * [Developmer's corner](#development)
-* [License](../README.md#license)
+* [License](../LICENSE.md)
 
 ---
 
@@ -56,6 +59,41 @@ character set and support for rendering any TTF/OTF font with Unicode!
 * and **moar**!
 
 ## Installation
+
+This is regular Python package and is also hosted
+on [PyPi](https://pypi.org/project/website-as-app/) so
+you can install it as usual. But because this one is supposed to rather act as the application, I
+strongly recommend to use [pipx](https://pipx.pypa.io/) to install this tool in isolated
+environment be it on Linux, Windows or MacOS machines. Once you got `pipx` up
+and running, install the package:
+
+```bash
+$ pipx install banger
+```
+
+Of course, you can also use plain `pip` to do that, but:
+
+```bash
+$ pip install banger
+```
+
+But that might be a problem as some distributions no longer allow system-wide installations,
+therefore use of `pipx` is strongly recommended as the all-in-one solution.
+
+Once installed you shold be able to run `banger` application in your terminal (session opened
+prior installation might not see it unless restarted).
+Please use `--demo` to see built-in fonts or type `--help` to see all available options.
+
+### Requirements
+
+* Python 3.8+
+* Pillow (PIL fork) for TTF/OTF font rendering
+
+---
+
+---
+
+## Installation Options
 
 This is regular Python package and is also hosted
 on [PyPi](https://pypi.org/project/website-as-app/) so
@@ -168,7 +206,7 @@ You can control the output adjusting font size as well as setting how many termi
 want the banner to take using `--ttf-lines` (default is 7).
 
 You can also control size of the rendered TTF font. When manually specifying `--ttf-size`, TTF/OTF
-font sizes work differently than regular text. Use  these ranges for best results:
+font sizes work differently than regular text. Use these ranges for best results:
 
 * **Low quality**: 24-40pt (faster rendering, acceptable quality)
 * **Medium quality**: 40-80pt (good balance of speed and quality)
@@ -280,7 +318,8 @@ banger --font banner --width 7 "TEST" > new.txt
 diff original.txt new.txt  # Should show minimal differences
 ```
 
-To install dev version using `pipx` or `pip` for current sources, use (note we install no development dependencies):
+To install dev version using `pipx` or `pip` for current sources, use (note we install no
+development dependencies):
 
 ```ascii
 # as system wide app

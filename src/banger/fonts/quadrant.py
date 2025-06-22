@@ -37,11 +37,11 @@ class QuadrantFont(BaseFont):
     """
 
     _FONT_DATA = {
-        'name': 'quadrant',
-        'height': 5,
-        'description': 'Unicode quadrant block font with pixel-perfect design and 4-line height',
-        'bottom_padding': 0,
-        'characters': {
+        "name": "quadrant",
+        "height": 5,
+        "description": "Unicode quadrant block font with pixel-perfect design and 4-line height",
+        "bottom_padding": 0,
+        "characters": {
             "default": {
                 "lines": [
                     "▄▀▄▀",
@@ -429,15 +429,7 @@ class QuadrantFont(BaseFont):
                     "",
                 ]
             },
-            "g": {
-                "lines": [
-                    "    ",
-                    "▄▀▀█",
-                    "█  █",
-                    "▀▄▄█",
-                    " ▄▄▀"
-                ]
-            },
+            "g": {"lines": ["    ", "▄▀▀█", "█  █", "▀▄▄█", " ▄▄▀"]},
             "h": {
                 "lines": [
                     "█   ",
@@ -510,24 +502,8 @@ class QuadrantFont(BaseFont):
                     "",
                 ]
             },
-            "p": {
-                "lines": [
-                    "    ",
-                    "█▀▀▄",
-                    "█  █",
-                    "█▄▄▀",
-                    "█   "
-                ]
-            },
-            "q": {
-                "lines": [
-                    "    ",
-                    "▄▀▀█",
-                    "█  █",
-                    "▀▄▄█",
-                    "   █"
-                ]
-            },
+            "p": {"lines": ["    ", "█▀▀▄", "█  █", "█▄▄▀", "█   "]},
+            "q": {"lines": ["    ", "▄▀▀█", "█  █", "▀▄▄█", "   █"]},
             "r": {
                 "lines": [
                     "   ",
@@ -591,15 +567,7 @@ class QuadrantFont(BaseFont):
                     "",
                 ]
             },
-            "y": {
-                "lines": [
-                    "    ",
-                    "    ",
-                    "█  █",
-                    "▀▄▄█",
-                    "▄▄▄▀"
-                ]
-            },
+            "y": {"lines": ["    ", "    ", "█  █", "▀▄▄█", "▄▄▄▀"]},
             "z": {
                 "lines": [
                     "    ",
@@ -609,16 +577,7 @@ class QuadrantFont(BaseFont):
                     "",
                 ]
             },
-            " ": {
-                "lines": [
-                    "   ",
-                    "   ",
-                    "   ",
-                    "   ",
-                    "   "
-                ],
-                "trim": False
-            },
+            " ": {"lines": ["   ", "   ", "   ", "   ", "   "], "trim": False},
             "!": {
                 "lines": [
                     "█",
@@ -761,7 +720,6 @@ class QuadrantFont(BaseFont):
                     "",
                     "",
                     "",
-                    "",
                 ],
             },
             "$": {
@@ -773,5 +731,5 @@ class QuadrantFont(BaseFont):
                     "",
                 ]
             },
-        }
+        },
     }

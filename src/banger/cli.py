@@ -15,14 +15,12 @@
 
 import argparse
 import sys
-from typing import List, Optional
 
-from .core import BannerGenerator
-from .terminal import get_terminal_width
-from .fonts import get_available_fonts
 from .config import get_config, create_config_template
-
-__version__ = "1.0.0"
+from .constants import Consts
+from .core import BannerGenerator
+from .fonts import get_available_fonts
+from .terminal import get_terminal_width
 
 
 def expand_special_text(text: str) -> str:
@@ -51,10 +49,24 @@ def expand_special_text(text: str) -> str:
 
 def create_parser() -> argparse.ArgumentParser:
     """Create argument parser."""
+
+    epilog = "\n".join([
+        f"Examples:",
+        f"  banger 'Hello World'                    # Basic usage",
+        f"  banger --font fire 'TEXT'               # Use fire font",
+        f"  banger --width 8 'ABC'                  # Set minimum character width (monospace)",
+        f"  banger --banner-width 40 'Long Text'    # Limit total banner width",
+        f"  banger --font-list                      # List available TTF/OTF fonts",
+        f"  banger --ttf-font /path/to/font.ttf 'Hi' # Use system font to render text",
+        f"",
+        f"This is {Consts.APP_NAME} {Consts.APP_VERSION}",
+        f"{Consts.APP_URL}",
+    ])
+
     parser = argparse.ArgumentParser(
         prog="banger",
-        description="Classic-style banner program that prints text in large letters",
-        epilog=f"Examples:\n  banger 'Hello World'                    # Basic usage\n  banger --font matrix 'TEXT'             # Use matrix font\n  banger --width 8 'ABC'                  # Set minimum character width\n  banger --banner-width 40 'Long Text'    # Limit total banner width\n  banger --font-list                      # List available fonts\n  banger --ttf-font /path/to/font.ttf 'Hi' # Use system font\n\nThis is banger {__version__}. Distributed under the GNU General Public License.",
+        description="Prints text in large letters",
+        epilog=epilog,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
 
@@ -67,7 +79,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--font",
         default=default_font,
         choices=available_fonts,
-        help=f"Built-in font to use for rendering (default: %(default)s). Use --font-list to see all options"
+        help=f"Built-in font to use for rendering (default: %(default)s)."
     )
 
     parser.add_argument(
@@ -87,7 +99,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--width",
         type=positive_int,
         metavar="CHARS",
-        help="Minimum width for each character, adds spacing between characters (default: use font's natural width)"
+        help="Minimum recommended width for each character (default: use characters' real width)"
     )
 
     parser.add_argument(
@@ -153,6 +165,12 @@ def create_parser() -> argparse.ArgumentParser:
         "--font-list",
         action="store_true",
         help="List all built-in font names in alphabetical order"
+    )
+
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"{Consts.APP_NAME} {Consts.APP_VERSION} - {Consts.APP_URL}"
     )
 
     parser.add_argument(
