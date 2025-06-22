@@ -13,7 +13,7 @@
 Classic Unix banner command reimplemented in Python.
 """
 
-from .core import BangerGenerator
+from .core import BannerGenerator
 from .fonts import DEFAULT_CHAR_SPACING
 
-__all__ = ["BangerGenerator", "DEFAULT_CHAR_SPACING"]
+__all__ = ["BannerGenerator", "DEFAULT_CHAR_SPACING"]
