@@ -15,7 +15,7 @@
 
 ---
 
-```
+```ascii
 █▀▄▀█           ▀  ▀
 █ █ █ ▄▀▀▄ █▀▀▄ █  █
 █   █ █▀▀  █  █ █  █
@@ -29,13 +29,19 @@
   * [Quick Start](#quick-start)
   * [Special Text Patterns](#special-text-patterns)
 * TTF/OTF Font Support
-  * [Using TTF/OTF Fonts](#using-ttfotf-fonts)
+  * [Using TTF/OTF Fonts](#ttfotf-font-support)
   * [Font Size Guidelines](#font-size-guidelines)
   * [How TTF/OTF Conversion Works](#how-ttfotf-conversion-works)
 * Configuration File
   * [Creating a Configuration File](#creating-a-configuration-file)
   * [Configuration Options](#configuration-options)
   * [How Configuration Works](#how-configuration-works)
+<<<<<<< Updated upstream
+=======
+* [What's New?](../CHANGES.md)
+* [Developmer's corner](#development)
+* [License](../README.md#license)
+>>>>>>> Stashed changes
 
 ---
 
@@ -47,11 +53,49 @@ character set and support for rendering any TTF/OTF font with Unicode!
 
 ## Key Features
 
-- **Endless font options**: use any TTF/OTF font installed on your system,
-- **Better typography**  with proportional spacing that saves significant screen space,
-- **Compatible** with original Unix `banner` tool,
-- and **moar**!
+* **Endless font options**: use any TTF/OTF font installed on your system,
+* **Better typography**  with proportional spacing that saves significant screen space,
+* **Compatible** with original Unix `banner` tool,
+* and **moar**!
 
+<<<<<<< Updated upstream
+=======
+---
+
+## Installation
+
+This is regular Python package and is also hosted
+on [PyPi](https://pypi.org/project/website-as-app/) so
+you can install it as usual. But because this one is supposed to rather act as the application, I
+strongly recommend to use [pipx](https://pipx.pypa.io/) to install this tool in isolated
+environment be it on Linux, Windows or MacOS machines. Once you got `pipx` up
+and running, install the package:
+
+```bash
+$ pipx install banger
+```
+
+Of course, you can also use plain `pip` to do that, but:
+
+```bash
+$ pip install banger
+```
+
+But that might be a problem as some distributions no longer allow system-wide installations,
+therefore use of `pipx` is strongly recommended as the all-in-one solution.
+
+Once installed you shold be able to run `banger` application in your terminal (session opened
+prior installation might not see it unless restarted).
+Please use `--demo` to see built-in fonts or type `--help` to see all available options.
+
+### Requirements
+
+* Python 3.8+
+* Pillow (PIL fork) for TTF/OTF font rendering
+
+---
+
+>>>>>>> Stashed changes
 # Quick Start
 
 Create a banner with the default font:
@@ -134,9 +178,9 @@ want the banner to take using `--ttf-lines` (default is 7).
 You can also control size of the rendered TTF font. When manually specifying `--ttf-size`, TTF/OTF
 font sizes work differently than regular text. Use  these ranges for best results:
 
-- **Low quality**: 24-40pt (faster rendering, acceptable quality)
-- **Medium quality**: 40-80pt (good balance of speed and quality)
-- **High quality**: 80-150pt+ (slower rendering, best quality)
+* **Low quality**: 24-40pt (faster rendering, acceptable quality)
+* **Medium quality**: 40-80pt (good balance of speed and quality)
+* **High quality**: 80-150pt+ (slower rendering, best quality)
 
 Note: Since we convert to 1-bit quadrant blocks, very high font sizes don't provide significant
 quality improvements. The auto-calculated size is usually optimal.

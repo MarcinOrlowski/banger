@@ -68,8 +68,15 @@ $ banger --ttf-font ~/.fonts/j/JetBrainsMonoNL_Regular.ttf --ttf-size 70 --ttf-l
 
 ## Documentation
 
+<<<<<<< Updated upstream
 Please see the [documentation](docs/README.md) for detailed instructions on how to install and use
 `Bänger`.
+=======
+- [Installation guide](docs/README.md#installation)
+- [Project documentation](docs/README.md)
+- [Usage examples](docs/README.md#usage)
+- [What's new?](CHANGES.md)
+>>>>>>> Stashed changes
 
 ---
 
