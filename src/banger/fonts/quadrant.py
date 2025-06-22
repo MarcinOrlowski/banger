@@ -407,7 +407,7 @@ class QuadrantFont(BaseFont):
                     "   █",
                     "▄▀▀█",
                     "█  █",
-                    "▀▄▄▀",
+                    "▀▄▄█",
                     "",
                 ]
             },
