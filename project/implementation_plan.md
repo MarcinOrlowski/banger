@@ -10,27 +10,31 @@ for the Unix `banner` command, structured as a proper Python package ready for P
 ### Phase 1: Project Setup and Structure (30 minutes)
 
 1. **Initialize Git repository**
+
    ```ascii
    git init
    git branch -M main
    ```
 
-2. **Create directory structure**
-   ```
+1. **Create directory structure**
+
+   ```ascii
    mkdir -p src/banner_ng tests .github/workflows
    touch src/banner_ng/{__init__.py,__main__.py,cli.py,core.py,fonts.py,terminal.py}
    touch tests/{__init__.py,test_core.py,test_cli.py,test_fonts.py,test_terminal.py}
    ```
 
-3. **Create essential files**
-  - `.gitignore` (Python template)
-  - `LICENSE` (GPL-2.0 to match original)
-  - `README.md`
-  - `CHANGELOG.md`
-  - `pyproject.toml`
-  - `.python-version` (3.8)
+1. **Create essential files**
 
-4. **Set up virtual environment**
+- `.gitignore` (Python template)
+- `LICENSE` (GPL-2.0 to match original)
+- `README.md`
+- `CHANGELOG.md`
+- `pyproject.toml`
+- `.python-version` (3.8)
+
+1. **Set up virtual environment**
+
    ```ascii
    python3.8 -m venv venv
    source venv/bin/activate  # or venv\Scripts\activate on Windows
@@ -40,90 +44,106 @@ for the Unix `banner` command, structured as a proper Python package ready for P
 ### Phase 2: Core Implementation (2-3 hours)
 
 1. **Implement fonts.py**
-  - Extract character definitions from `banner-main/letters.h`
-  - Convert to Python dictionary format
-  - Verify all characters are included
 
-2. **Implement terminal.py**
-  - Terminal width detection logic
-  - COLUMNS environment variable support
-  - Fallback to 80 columns
+- Extract character definitions from `banner-main/letters.h`
+- Convert to Python dictionary format
+- Verify all characters are included
 
-3. **Implement core.py**
-  - `BannerGenerator` class
-  - Character addition logic
-  - Width truncation handling
-  - Banner rendering
+1. **Implement terminal.py**
 
-4. **Implement cli.py**
-  - Argument parsing
-  - Help text
-  - Main entry point
-  - Error handling
+- Terminal width detection logic
+- COLUMNS environment variable support
+- Fallback to 80 columns
 
-5. **Wire up __init__.py and __main__.py**
-  - Package exports
-  - Version information
-  - Entry point configuration
+1. **Implement core.py**
+
+- `BannerGenerator` class
+- Character addition logic
+- Width truncation handling
+- Banner rendering
+
+1. **Implement cli.py**
+
+- Argument parsing
+- Help text
+- Main entry point
+- Error handling
+
+1. **Wire up init.py and main.py**
+
+- Package exports
+- Version information
+- Entry point configuration
 
 ### Phase 3: Testing (1-2 hours)
 
 1. **Unit tests**
-  - Test each character renders correctly
-  - Test width truncation
-  - Test terminal width detection
-  - Test argument parsing
 
-2. **Integration tests**
-  - Test full banner generation
-  - Test CLI interface
-  - Test edge cases
+- Test each character renders correctly
+- Test width truncation
+- Test terminal width detection
+- Test argument parsing
 
-3. **Compatibility tests**
-  - Compare output with original C banner
-  - Test all supported characters
-  - Verify exact output match
+1. **Integration tests**
+
+- Test full banner generation
+- Test CLI interface
+- Test edge cases
+
+1. **Compatibility tests**
+
+- Compare output with original C banner
+- Test all supported characters
+- Verify exact output match
 
 ### Phase 4: Development Tools Setup (30 minutes)
 
 1. **Configure linting and formatting**
-  - Black configuration
-  - Ruff configuration
-  - MyPy configuration
 
-2. **Set up tox**
-  - Test multiple Python versions
-  - Linting environment
-  - Type checking environment
+- Black configuration
+- Ruff configuration
+- MyPy configuration
 
-3. **GitHub Actions**
-  - CI workflow
-  - Test matrix (OS × Python version)
-  - Linting and type checking
+1. **Set up tox**
+
+- Test multiple Python versions
+- Linting environment
+- Type checking environment
+
+1. **GitHub Actions**
+
+- CI workflow
+- Test matrix (OS × Python version)
+- Linting and type checking
 
 ### Phase 5: Documentation (30 minutes)
 
 1. **README.md**
-  - Installation instructions (pip and pipx)
-  - Usage examples
-  - Comparison with original banner
-  - Development setup
 
-2. **CHANGELOG.md**
-  - Initial 1.0.0 release notes
+- Installation instructions (pip and pipx)
+- Usage examples
+- Comparison with original banner
+- Development setup
 
-3. **Code documentation**
-  - Docstrings for all public functions
-  - Type hints throughout
+1. **CHANGELOG.md**
+
+- Initial 1.0.0 release notes
+
+1. **Code documentation**
+
+- Docstrings for all public functions
+- Type hints throughout
 
 ### Phase 6: Package and Publish (30 minutes)
 
 1. **Build package**
+
    ```ascii
    python -m build
    ```
 
-2. **Test package**
+1. **Test package**
+
    ```ascii
    # Create test environment
    python -m venv test-env
@@ -132,17 +152,20 @@ for the Unix `banner` command, structured as a proper Python package ready for P
    banger "TEST"
    ```
 
-3. **Publish to Test PyPI**
+1. **Publish to Test PyPI**
+
    ```ascii
    twine upload --repository testpypi dist/*
    ```
 
-4. **Final testing**
+1. **Final testing**
+
    ```ascii
    pipx install --index-url https://test.pypi.org/simple/ banner-ng
    ```
 
-5. **Publish to PyPI**
+1. **Publish to PyPI**
+
    ```ascii
    twine upload dist/*
    ```

@@ -2,7 +2,8 @@
 
 ## Core Principle
 
-**If your PRD is getting too long, your scope is too big.** Break it down into smaller, iterative deliverables.
+**If your PRD is getting too long, your scope is too big.** Break it down into smaller, iterative
+deliverables.
 
 ## Target Length & Format
 
@@ -16,6 +17,7 @@
 
 ```markdown
 ## Problem Statement
+
 - What specific problem are we solving?
 - Who experiences this problem?
 - What's the impact of not solving it?
@@ -30,6 +32,7 @@
 
 ```markdown
 ## Solution Overview
+
 - Core functionality in plain language
 - Key differentiator (if any)
 - What success looks like
@@ -37,26 +40,31 @@
 
 **Example:**
 > Add a simple water tracking widget to the home screen that allows one-tap logging of water
-> consumption. Unlike competitors, it will use smart reminders based on activity level. Success means
+> consumption. Unlike competitors, it will use smart reminders based on activity level. Success
+> means
 > 50% of active users log water at least once daily within 30 days.
 
 ### 3. User Stories (3-5 maximum)
 
 ```markdown
 ## User Stories
+
 As a [user type], I want to [action], so that [outcome]
 ```
 
 **Example:**
 
-1. As an active user, I want to log water intake with one tap, so that I can track hydration without interrupting my day
-2. As a fitness enthusiast, I want to see my hydration vs. activity level, so that I can optimize my performance
+1. As an active user, I want to log water intake with one tap, so that I can track hydration without
+   interrupting my day
+2. As a fitness enthusiast, I want to see my hydration vs. activity level, so that I can optimize my
+   performance
 3. As a user, I want to receive smart reminders, so that I maintain healthy hydration habits
 
 ### 4. Acceptance Criteria (5-7 bullet points)
 
 ```markdown
 ## Acceptance Criteria
+
 - Measurable, testable conditions
 - Focus on WHAT, not HOW
 ```
@@ -73,6 +81,7 @@ As a [user type], I want to [action], so that [outcome]
 
 ```markdown
 ## Out of Scope
+
 - Explicitly list what this iteration does NOT include
 ```
 
@@ -88,6 +97,7 @@ As a [user type], I want to [action], so that [outcome]
 
 ```markdown
 ## Success Metrics
+
 - Quantifiable measures tied to problem statement
 ```
 
@@ -134,17 +144,21 @@ Before finalizing your PRD, ensure:
 **Ticket**: [Link to github ticket]
 
 ## Problem Statement
+
 [2-3 sentences maximum]
 
 ## Solution Overview
+
 [3-4 sentences maximum]
 
 ## User Stories
+
 1. As a..., I want to..., so that...
 2. As a..., I want to..., so that...
 3. As a..., I want to..., so that...
 
 ## Acceptance Criteria
+
 - [ ] [Specific, measurable criterion]
 - [ ] [Specific, measurable criterion]
 - [ ] [Specific, measurable criterion]
@@ -152,11 +166,13 @@ Before finalizing your PRD, ensure:
 - [ ] [Specific, measurable criterion]
 
 ## Out of Scope
+
 - [Feature/functionality not included]
 - [Feature/functionality not included]
 - [Feature/functionality not included]
 
 ## Success Metrics
+
 1. [Metric + target + timeframe]
 2. [Metric + target + timeframe]
 3. [Metric + target + timeframe]
@@ -174,7 +190,8 @@ Before finalizing your PRD, ensure:
 
 ## Remember
 
-The goal is **clear communication that enables rapid delivery**, not comprehensive documentation. When in doubt, cut it out. You can always add detail in the next iteration.
+The goal is **clear communication that enables rapid delivery**, not comprehensive documentation.
+When in doubt, cut it out. You can always add detail in the next iteration.
 
 **Your PRD should answer:**
 

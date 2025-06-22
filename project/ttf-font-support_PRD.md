@@ -32,61 +32,71 @@ possibilities.
 #### Core TTF Rendering
 
 1. **Font Loading**
-  - Accept path to any valid TTF font file via `--ttf-font` parameter
-  - Validate font file exists and is readable
-  - Lazy-load PIL/Pillow dependencies only when TTF features are used
-  - Provide clear error messages for missing dependencies or invalid fonts
 
-2. **Character Rendering**
-  - Render individual characters to high-resolution bitmaps using PIL/Pillow
-  - Support full Unicode character range that the font provides
-  - Cache rendered characters to improve performance for repeated characters
-  - Provide fallback to 'default' character for unsupported glyphs
+- Accept path to any valid TTF font file via `--ttf-font` parameter
+- Validate font file exists and is readable
+- Lazy-load PIL/Pillow dependencies only when TTF features are used
+- Provide clear error messages for missing dependencies or invalid fonts
 
-3. **Bitmap to ASCII Conversion**
-  - Convert rendered bitmaps to Unicode quadrant block characters
-  - Use 2×2 pixel sampling for quadrant mapping
-  - Support all 16 quadrant block variations: `▘ ▝ ▀ ▖ ▌ ▞ ▛ ▗ ▚ ▐ ▜ ▄ ▙ ▟ █`
-  - Automatically clip horizontal whitespace for proportional spacing
+1. **Character Rendering**
 
-4. **Height Scaling**
-  - Scale rendered bitmaps to match desired terminal line height
-  - Use nearest-neighbor interpolation for scaling
-  - Maintain aspect ratio during scaling operations
+- Render individual characters to high-resolution bitmaps using PIL/Pillow
+- Support full Unicode character range that the font provides
+- Cache rendered characters to improve performance for repeated characters
+- Provide fallback to 'default' character for unsupported glyphs
+
+1. **Bitmap to ASCII Conversion**
+
+- Convert rendered bitmaps to Unicode quadrant block characters
+- Use 2×2 pixel sampling for quadrant mapping
+- Support all 16 quadrant block variations: `▘ ▝ ▀ ▖ ▌ ▞ ▛ ▗ ▚ ▐ ▜ ▄ ▙ ▟ █`
+- Automatically clip horizontal whitespace for proportional spacing
+
+1. **Height Scaling**
+
+- Scale rendered bitmaps to match desired terminal line height
+- Use nearest-neighbor interpolation for scaling
+- Maintain aspect ratio during scaling operations
 
 #### User Controls
 
 1. **Output Size Control**
-  - `--ttf-lines LINES`: Control output height in terminal lines (default: 7)
-  - Support range from 3 to reasonable maximum (e.g., 50 lines)
-  - Ensure consistent output height regardless of font or rendering size
 
-2. **Rendering Quality Control**
-  - `--ttf-size SIZE`: Override automatic font size calculation
-  - Auto-calculate optimal size when not specified (lines × 8 points)
-  - Allow manual override for quality vs. performance trade-offs
+- `--ttf-lines LINES`: Control output height in terminal lines (default: 7)
+- Support range from 3 to reasonable maximum (e.g., 50 lines)
+- Ensure consistent output height regardless of font or rendering size
 
-3. **Font Discovery**
-  - `--ttf-list`: List all system TTF fonts with paths
-  - `--ttf-list-sort [name|path]`: Control sort order of font list
-  - Search common system font directories based on OS platform
+1. **Rendering Quality Control**
+
+- `--ttf-size SIZE`: Override automatic font size calculation
+- Auto-calculate optimal size when not specified (lines × 8 points)
+- Allow manual override for quality vs. performance trade-offs
+
+1. **Font Discovery**
+
+- `--ttf-list`: List all system TTF fonts with paths
+- `--ttf-list-sort [name|path]`: Control sort order of font list
+- Search common system font directories based on OS platform
 
 ### Non-Functional Requirements
 
 1. **Performance**
-  - Character rendering should complete in reasonable time (<1s for typical text)
-  - Implement character caching to avoid re-rendering
-  - Minimize memory usage through efficient bitmap handling
 
-2. **Compatibility**
-  - Support Linux, macOS, and Windows font directories
-  - Work with standard TTF font files
-  - Graceful degradation when PIL/Pillow not installed
+- Character rendering should complete in reasonable time (<1s for typical text)
+- Implement character caching to avoid re-rendering
+- Minimize memory usage through efficient bitmap handling
 
-3. **Integration**
-  - TTF fonts work seamlessly with existing banger features
-  - Respect max-width settings and other formatting options
-  - Support all text processing features (word wrapping, etc.)
+1. **Compatibility**
+
+- Support Linux, macOS, and Windows font directories
+- Work with standard TTF font files
+- Graceful degradation when PIL/Pillow not installed
+
+1. **Integration**
+
+- TTF fonts work seamlessly with existing banger features
+- Respect max-width settings and other formatting options
+- Support all text processing features (word wrapping, etc.)
 
 ## User Experience
 
@@ -124,18 +134,21 @@ banger --ttf-list --ttf-list-sort name
 ### Architecture
 
 1. **TtfFont Class**
-  - Implements FontInterface for compatibility
-  - Handles all TTF-specific rendering logic
-  - Manages character cache and bitmap operations
 
-2. **Bitmap Processing Pipeline**
-  - Render character → Clip whitespace → Scale to height → Convert to quadrants
-  - Each step is modular and testable
+- Implements FontInterface for compatibility
+- Handles all TTF-specific rendering logic
+- Manages character cache and bitmap operations
 
-3. **Integration Points**
-  - CLI argument parsing for TTF-specific options
-  - Font factory integration for seamless usage
-  - Standard FontInterface compliance
+1. **Bitmap Processing Pipeline**
+
+- Render character → Clip whitespace → Scale to height → Convert to quadrants
+- Each step is modular and testable
+
+1. **Integration Points**
+
+- CLI argument parsing for TTF-specific options
+- Font factory integration for seamless usage
+- Standard FontInterface compliance
 
 ### Dependencies
 

@@ -63,20 +63,24 @@ FONT_DATA = {
 ### Spacing Modes
 
 1. **Proportional** (`--spacing proportional`):
-  - Use character's natural width + inter-character spacing
-  - More compact, professional appearance
 
-2. **Fixed-width** (`--spacing fixed`):
-  - Pad all characters to maximum width in set
-  - Maintains current behavior
+- Use character's natural width + inter-character spacing
+- More compact, professional appearance
+
+1. **Fixed-width** (`--spacing fixed`):
+
+- Pad all characters to maximum width in set
+- Maintains current behavior
 
 ### Character Style Modes
 
 1. **Default** (`--style default`):
-  - Mixed case with cursive-style lowercase
 
-2. **All-caps** (`--style all-caps`):
-  - Lowercase uses smaller uppercase shapes
+- Mixed case with cursive-style lowercase
+
+1. **All-caps** (`--style all-caps`):
+
+- Lowercase uses smaller uppercase shapes
 
 ### Combined Options
 

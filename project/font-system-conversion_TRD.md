@@ -5,7 +5,11 @@
 
 ## Technical Approach
 
-We'll generate Python font classes by parsing existing JSON font files and creating classes that extend `BaseBannerFont`. Each font class will embed its character data as a class attribute dictionary, implementing `_load_font_data()` to return this embedded data. The existing font registry in `fonts.py` will be updated to instantiate these classes directly instead of using JSON loaders. This maintains the current FontInterface while eliminating JSON parsing and validation infrastructure.
+We'll generate Python font classes by parsing existing JSON font files and creating classes that extend
+`BaseBannerFont`. Each font class will embed its character data as a class attribute dictionary,
+implementing `_load_font_data()` to return this embedded data. The existing font registry in `fonts.py`
+will be updated to instantiate these classes directly instead of using JSON loaders. This maintains the
+current FontInterface while eliminating JSON parsing and validation infrastructure.
 
 ## Data Model
 
@@ -23,7 +27,7 @@ class BannerFont(BaseBannerFont):
             # ... 95 characters total
         }
     }
-    
+
     def _load_font_data(self) -> Dict[str, Any]:
         return self._FONT_DATA
 ```
@@ -58,7 +62,7 @@ BUILTIN_FONTS = {
 ## Technical Risks & Mitigations
 
 1. **Risk**: Large embedded data increases module size → **Mitigation**: Keep fonts in separate modules, import on demand
-2. **Risk**: Breaking API compatibility during conversion → **Mitigation**: Maintain identical FontInterface, run full test suite 
+2. **Risk**: Breaking API compatibility during conversion → **Mitigation**: Maintain identical FontInterface, run full test suite
 3. **Risk**: Character data corruption during JSON conversion → **Mitigation**: Automated validation comparing old vs new output
 
 ## Implementation Plan

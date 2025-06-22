@@ -4,11 +4,17 @@
 
 ## Problem Statement
 
-The current font system relies on JSON files with runtime loading and validation, creating unnecessary complexity with FontLoader and FontValidator classes. Developers must maintain separate JSON files and validation logic, increasing maintenance overhead and potential runtime errors. This architecture adds 500+ lines of infrastructure code for functionality that could be compile-time validated.
+The current font system relies on JSON files with runtime loading and validation, creating unnecessary
+complexity with FontLoader and FontValidator classes. Developers must maintain separate JSON files and
+validation logic, increasing maintenance overhead and potential runtime errors. This architecture adds
+500+ lines of infrastructure code for functionality that could be compile-time validated.
 
 ## Solution Overview
 
-Convert all JSON-based fonts to direct Python classes that extend the existing BaseBannerFont foundation. Each font becomes a self-contained class with embedded character data, eliminating JSON files, loader, and validator infrastructure. This maintains full API compatibility while simplifying the codebase and improving performance through direct class instantiation rather than runtime JSON parsing.
+Convert all JSON-based fonts to direct Python classes that extend the existing BaseBannerFont foundation.
+Each font becomes a self-contained class with embedded character data, eliminating JSON files, loader, and
+validator infrastructure. This maintains full API compatibility while simplifying the codebase and
+improving performance through direct class instantiation rather than runtime JSON parsing.
 
 ## User Stories
 

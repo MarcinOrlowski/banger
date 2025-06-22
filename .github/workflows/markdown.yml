@@ -45,6 +45,7 @@ jobs:
         uses: ruzickap/action-my-markdown-linter@v1
         if: steps.filter.outputs.docs == 'true'
         with:
+          config_file: .markdownlint.yaml.dist
           # LICENSE is externally sourced and we're not going to fix it.
-          exclude: "LICENSE.md"
-          config_file: .markdownlint.yml.dist
+          exclude: |
+            LICENSE.md
