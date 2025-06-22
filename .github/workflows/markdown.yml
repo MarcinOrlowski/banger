@@ -1,0 +1,49 @@
+##################################################################################
+#
+# Bänger by Marcin Orlowski
+# Because your `banner` deserves to be a `bänger`!
+#
+# @author    Marcin Orlowski <mail@marcinOrlowski.com>
+# Copyright  ©2025 Marcin Orlowski <MarcinOrlowski.com>
+# @link      https://github.com/MarcinOrlowski/banger
+#
+##################################################################################
+#
+# Runs markdownlint on all *.md files
+#
+
+name: "MD Lint"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master, dev ]
+
+jobs:
+  markdown_lint:
+    name: "Markdown linter"
+    runs-on: ubuntu-latest
+
+    steps:
+      # https://github.com/marketplace/actions/checkout
+      - name: "Checkout sources"
+        uses: actions/checkout@v4
+
+      # https://github.com/marketplace/actions/paths-changes-filter
+      - name: "Look for changed doc related files..."
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            docs:
+              - '**/*.md'
+
+      # https://github.com/marketplace/actions/my-markdown-linter
+      - name: "Running markdown linter..."
+        uses: ruzickap/action-my-markdown-linter@v1
+        if: steps.filter.outputs.docs == 'true'
+        with:
+          # LICENSE is externally sourced and we're not going to fix it.
+          exclude: "LICENSE.md"
+          config_file: .markdownlint.yml.dist
