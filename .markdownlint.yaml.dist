@@ -1,4 +1,15 @@
-# Example markdownlint YAML configuration with all properties set to their default value
+####################################################################
+#
+# Olza Logistic's Mail Gateway API
+#
+# author    Marcin Orlowski <mail@MmarcinOrlowski.com>
+# copyright 2024 DevelArt
+#
+# Based on default config file. Changes annotated with "MOR" initials.
+#
+# markdownlint project: https://github.com/DavidAnson/markdownlint
+#
+####################################################################
 
 # Default state for all rules
 default: true
@@ -64,19 +75,19 @@ MD012:
 # MD013/line-length - Line length
 MD013:
   # Number of characters
-  line_length: 230
+  line_length: 130
   # Number of characters for headings
-  heading_line_length: 230
+  heading_line_length: 130
   # Number of characters for code blocks
-  code_block_line_length: 230
+  code_block_line_length: 130
   # Include code blocks
-  code_blocks: false
+  code_blocks: true
   # Include tables
   tables: false
   # Include headings
-  headings: false
+  headings: true
   # Include headings
-  headers: false
+  headers: true
   # Strict length checking
   strict: false
   # Stern length checking
@@ -113,8 +124,8 @@ MD024:
   # Only check sibling headings
   allow_different_nesting: false
   # Only check sibling headings
-  siblings_only: true
-
+  # siblings_only: false
+  siblings_only: true  # MOR
 
 # MD025/single-title/single-h1 - Multiple top-level headings in the same document
 MD025:
@@ -168,7 +179,8 @@ MD033:
   allowed_elements: ['mail'] # MOR
 
 # MD034/no-bare-urls - Bare URL used
-MD034: true
+# MD034: true
+MD034: false  # MOR
 
 # MD035/hr-style - Horizontal rule style
 MD035:
@@ -231,5 +243,5 @@ MD047: true
 
 # MD048/code-fence-style - Code fence style
 MD048:
-  # Code fence syle
+  # Code fence style
   style: "consistent"
