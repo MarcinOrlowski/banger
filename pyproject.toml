@@ -1,0 +1,92 @@
+##################################################################################
+#
+# Bänger by Marcin Orlowski
+# Because your `banner` deserves to be a `bänger`!
+#
+# @author    Marcin Orlowski <mail@marcinOrlowski.com>
+# Copyright  ©2025 Marcin Orlowski <MarcinOrlowski.com>
+# @link      https://github.com/MarcinOrlowski/banger
+#
+##################################################################################
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "banger"
+version = "1.0.0"
+description = "Classic Unix banner command on steroids with TTF support and more."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Marcin Orlowski", email = "mail@marcinOrlowski.com" }
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing",
+    "Topic :: Utilities",
+]
+keywords = ["banner", "ascii", "text", "console"]
+requires-python = ">=3.8"
+dependencies = [
+    "PyYAML>=6.0",
+    "Pillow>=8.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/banger"
+Repository = "https://github.com/yourusername/banger"
+Issues = "https://github.com/yourusername/banger/issues"
+
+[project.scripts]
+banger = "banger.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+    "wemake-python-styleguide",
+    "twine",
+    "faker",
+    "flake8",
+    "flake8-noqa",
+    "flake8-docstrings",
+    "types-Markdown",
+    "python-dateutil",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.ruff]
+target-version = "py38"
+line-length = 88
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+addopts = "-ra -q --cov=banger --cov-report=term-missing"
+testpaths = ["tests"]

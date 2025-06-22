@@ -8,11 +8,8 @@
 # @link      https://github.com/MarcinOrlowski/banger
 #
 ##################################################################################
-#
-# Runs markdownlint on all *.md files
-#
 
-name: "MD Lint"
+name: "Markdown Lint"
 
 on:
   push:
@@ -23,7 +20,11 @@ on:
 jobs:
   markdown_lint:
     name: "Markdown linter"
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
 
     steps:
       # https://github.com/marketplace/actions/checkout
@@ -44,6 +45,7 @@ jobs:
         uses: ruzickap/action-my-markdown-linter@v1
         if: steps.filter.outputs.docs == 'true'
         with:
+          config_file: .markdownlint.yaml.dist
           # LICENSE is externally sourced and we're not going to fix it.
-          exclude: "LICENSE.md"
-          config_file: .markdownlint.yml.dist
+          exclude: |
+            LICENSE.md
