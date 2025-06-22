@@ -11,10 +11,10 @@
 ┅┅┅ Your banner deserves to be a bänger ┅┅┅┅┅┅ https://github.com/MarcinOrlowski/banger ┅┅┅
 ```
 
----
-
 # Changelog
 
-## v1.0.0 (2025-06-22)
-----------------------
+---
+
+v1.0.0 (2025-06-22)
+-------------------
 - Initial public release

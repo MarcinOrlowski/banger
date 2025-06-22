@@ -22,7 +22,7 @@
 █   █ ▀▄▄▀ █  █ ▀▄▄▀
 ```
 
-* Banger
+* Bänger
   * [What it is?](#what-it-is)
   * [Key Features](#key-features)
 * Installation
@@ -39,6 +39,9 @@
   * [Creating a Configuration File](#creating-a-configuration-file)
   * [Configuration Options](#configuration-options)
   * [How Configuration Works](#how-configuration-works)
+* [What's New?](../CHANGES.md)
+* [Developmer's corner](#development)
+* [License](#license)
 
 ---
 
