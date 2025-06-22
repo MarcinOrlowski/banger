@@ -88,7 +88,6 @@ Please use `--demo` to see built-in fonts or type `--help` to see all available 
 
 ---
 
->>>>>>> Stashed changes
 # Quick Start
 
 Create a banner with the default font:
@@ -202,6 +201,7 @@ emoji fonts!
 ▀▄▄▀ ▀▄▄▀ █  █  █   ▄█▄ ▀▄▄█      █   ▄█▄ ▄█▄ ▀▄▄▀
                          ▄▄▀
 ```
+
 # Configuration File
 
 `Bänger` supports YAML configuration files to set default options. This allows you to customize your
