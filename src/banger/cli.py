@@ -18,7 +18,7 @@ import string
 import sys
 from typing import Optional
 
-from .config import get_config, create_config_template
+from .config import create_config_template, get_config
 from .constants import Consts
 from .core import BannerGenerator
 from .fonts import get_available_fonts
@@ -123,7 +123,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--demo-text",
         metavar="TEXT",
-        help="Custom text to use for demo displays (implies --demo unless --demo-md is specified)",
+        help="Custom text for demo displays (implies --demo unless --demo-md specified)",
     )
 
     parser.add_argument(
@@ -199,7 +199,7 @@ def display_all_fonts(demo_text: Optional[str] = None) -> None:
     """Display all available fonts with samples.
 
     Args:
-        demo_text: Custom text to use for demos. If None, auto-generates based on font capabilities.
+        demo_text: Custom text for demos. If None, auto-generates based on font.
     """
     from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
 
@@ -246,7 +246,7 @@ def display_all_fonts_markdown(demo_text: Optional[str] = None) -> None:
     """Display all available fonts in Markdown format for documentation.
 
     Args:
-        demo_text: Custom text to use for demos. If None, auto-generates based on font capabilities.
+        demo_text: Custom text for demos. If None, auto-generates based on font.
     """
     from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
 
