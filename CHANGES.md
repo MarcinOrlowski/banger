@@ -15,6 +15,7 @@
 
 ## @dev
 
+- [#0022] Add < and > characters to all fonts that were missing them
 - Enhanced font character support with additional punctuation and symbols across all fonts
 
 ## v1.0.0 (2025-06-22)
