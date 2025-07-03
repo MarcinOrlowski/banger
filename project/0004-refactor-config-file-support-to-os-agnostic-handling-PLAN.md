@@ -39,11 +39,8 @@
 The new implementation will store configuration files in OS-appropriate directories:
 
 - **Linux**: `~/.config/banger/banger.yml`
-  - Example: `/home/username/.config/banger/banger.yml`
 - **macOS**: `~/Library/Application Support/banger/banger.yml`
-  - Example: `/Users/username/Library/Application Support/banger/banger.yml`
-- **Windows**: `%APPDATA%\banger\banger\banger.yml`
-  - Example: `C:\Users\username\AppData\Roaming\banger\banger\banger.yml`
+- **Windows**: `%USERPROFILE%\AppData\Roaming\banger\banger\banger.yml`
 
 **Total Estimated Time:** 5 days
 

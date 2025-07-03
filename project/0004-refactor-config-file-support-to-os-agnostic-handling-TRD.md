@@ -24,12 +24,10 @@ macOS:   ~/Library/Application Support/banger/banger.yml
 Windows: %APPDATA%\banger\banger\banger.yml
 
 Example Paths:
-Linux:   /home/username/.config/banger/banger.yml
-macOS:   /Users/username/Library/Application Support/banger/banger.yml
-Windows: C:\Users\username\AppData\Roaming\banger\banger\banger.yml
+Linux:   ~/.config/banger/banger.yml
+macOS:   ~/Library/Application Support/banger/banger.yml
+Windows: %USERPROFILE%\AppData\Roaming\banger\banger\banger.yml
 ```
-
-Migration logic: Check for old config at `~/.config/banger/banger.yml` and copy to new location if new location doesn't exist.
 
 ## API Design
 
