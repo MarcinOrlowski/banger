@@ -283,7 +283,7 @@ class TtfFont(FontInterface):
             source_y = min(source_y, current_height - 1)  # Clamp to valid range
 
             # Copy the row from source
-            scaled_bitmap.append(bitmap_2d[source_y][:])
+            scaled_bitmap.append(bitmap_2d[source_y].copy())
 
         return scaled_bitmap
 
