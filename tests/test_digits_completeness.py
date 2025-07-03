@@ -53,6 +53,7 @@ class TestDigitsCompleteness(unittest.TestCase):
                     char_data,
                     f"Font '{font_name}' character '{digit}' returned None data",
                 )
+                assert char_data is not None  # Type narrowing for mypy
 
                 # Must have lines attribute
                 self.assertTrue(

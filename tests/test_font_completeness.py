@@ -51,6 +51,7 @@ class TestFontCompleteness(unittest.TestCase):
                             char_data,
                             f"Font '{font_name}' missing character data for '{char}'",
                         )
+                        assert char_data is not None  # Type narrowing for mypy
                         self.assertGreater(
                             len(char_data.lines),
                             0,
@@ -87,6 +88,7 @@ class TestFontCompleteness(unittest.TestCase):
                             char_data,
                             f"Font '{font_name}' missing character data for '{char}'",
                         )
+                        assert char_data is not None  # Type narrowing for mypy
                         self.assertGreater(
                             len(char_data.lines),
                             0,
@@ -123,6 +125,7 @@ class TestFontCompleteness(unittest.TestCase):
                             char_data,
                             f"Font '{font_name}' missing character data for '{char}'",
                         )
+                        assert char_data is not None  # Type narrowing for mypy
                         self.assertGreater(
                             len(char_data.lines),
                             0,
@@ -184,6 +187,7 @@ class TestFontCompleteness(unittest.TestCase):
                 self.assertIsNotNone(
                     space_data, f"Font '{font_name}' missing character data for space"
                 )
+                assert space_data is not None  # Type narrowing for mypy
                 self.assertGreater(
                     len(space_data.lines),
                     0,
