@@ -16,6 +16,7 @@ Command-line interface for banger.
 import argparse
 import string
 import sys
+from typing import Optional
 
 from .config import get_config, create_config_template
 from .constants import Consts
@@ -120,6 +121,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
+        "--demo-text",
+        metavar="TEXT",
+        help="Custom text to use for demo displays (implies --demo unless --demo-md is specified)",
+    )
+
+    parser.add_argument(
         "--config-init",
         action="store_true",
         help="Create a template configuration file at ~/.config/banger/banger.yml",
@@ -188,8 +195,12 @@ def create_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def display_all_fonts() -> None:
-    """Display all available fonts with samples."""
+def display_all_fonts(demo_text: Optional[str] = None) -> None:
+    """Display all available fonts with samples.
+
+    Args:
+        demo_text: Custom text to use for demos. If None, auto-generates based on font capabilities.
+    """
     from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
 
     available_fonts = get_available_fonts()
@@ -200,24 +211,29 @@ def display_all_fonts() -> None:
             f"---[ {font_name} ]---------------------------------------------------------\n"
         )
 
-        # Determine what examples to show based on font capabilities
-        examples = []
+        # Determine what examples to show
+        if demo_text is not None:
+            # Use custom demo text
+            examples = [demo_text]
+        else:
+            # Auto-generate based on font capabilities (current behavior)
+            examples = []
 
-        # Add font name in different cases if supported
-        font_name_str = ""
-        if _font_supports_uppercase(font_name):
-            font_name_str = font_name.upper()
-        if _font_supports_lowercase(font_name):
+            # Add font name in different cases if supported
+            font_name_str = ""
+            if _font_supports_uppercase(font_name):
+                font_name_str = font_name.upper()
+            if _font_supports_lowercase(font_name):
+                if font_name_str:
+                    font_name_str += " "
+                font_name_str += font_name.lower()
+
+            # Add digits and punctuation
             if font_name_str:
                 font_name_str += " "
-            font_name_str += font_name.lower()
+            font_name_str += "123.!?"
 
-        # Add digits and punctuation
-        if font_name_str:
-            font_name_str += " "
-        font_name_str += "123.!?"
-
-        examples.append(font_name_str)
+            examples.append(font_name_str)
 
         # Generate and print each example
         for example_text in examples:
@@ -226,8 +242,12 @@ def display_all_fonts() -> None:
             print(generator.render(), end="")
 
 
-def display_all_fonts_markdown() -> None:
-    """Display all available fonts in Markdown format for documentation."""
+def display_all_fonts_markdown(demo_text: Optional[str] = None) -> None:
+    """Display all available fonts in Markdown format for documentation.
+
+    Args:
+        demo_text: Custom text to use for demos. If None, auto-generates based on font capabilities.
+    """
     from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
 
     available_fonts = get_available_fonts()
@@ -236,34 +256,39 @@ def display_all_fonts_markdown() -> None:
         # Print font name as markdown header
         print(f"### {font_name}")
 
-        # Determine what examples to show based on font capabilities
-        examples = []
+        # Determine what text to use for demo
+        if demo_text is not None:
+            # Use custom demo text
+            combined_text = demo_text
+        else:
+            # Auto-generate based on font capabilities (current behavior)
+            examples = []
 
-        # Add font name in different cases if supported
-        if _font_supports_uppercase(font_name):
-            examples.append(font_name.upper())
-        if _font_supports_lowercase(font_name):
-            examples.append(font_name.lower())
+            # Add font name in different cases if supported
+            if _font_supports_uppercase(font_name):
+                examples.append(font_name.upper())
+            if _font_supports_lowercase(font_name):
+                examples.append(font_name.lower())
 
-        # If font doesn't support both cases, just use the font name as-is
-        if not examples:
-            examples.append(font_name)
+            # If font doesn't support both cases, just use the font name as-is
+            if not examples:
+                examples.append(font_name)
 
-        # Add digits and punctuation
-        examples.append("123")
-        examples.append(".!?")
+            # Add digits and punctuation
+            examples.append("123")
+            examples.append(".!?")
 
-        # Create single line with all examples
-        font_examples = []
-        if _font_supports_uppercase(font_name):
-            font_examples.append(font_name.upper())
-        if _font_supports_lowercase(font_name):
-            font_examples.append(font_name.lower())
-        if not font_examples:
-            font_examples.append(font_name)
+            # Create single line with all examples
+            font_examples = []
+            if _font_supports_uppercase(font_name):
+                font_examples.append(font_name.upper())
+            if _font_supports_lowercase(font_name):
+                font_examples.append(font_name.lower())
+            if not font_examples:
+                font_examples.append(font_name)
 
-        # Combine font names and add digits/punctuation
-        combined_text = " ".join(font_examples) + " 123.!?"
+            # Combine font names and add digits/punctuation
+            combined_text = " ".join(font_examples) + " 123.!?"
 
         # Print usage example in bash code block
         print()
@@ -306,6 +331,7 @@ def main() -> int:
                 self.width = config.get_width()
                 self.demo = False
                 self.demo_md = False
+                self.demo_text = None
                 self.config_init = False
                 self.force = False
                 self.ttf_font = None
@@ -323,14 +349,21 @@ def main() -> int:
         except SystemExit as e:
             return int(e.code) if e.code is not None else 1
 
-    # Handle --demo option
-    if getattr(args, "demo", False):
-        display_all_fonts()
+    # Validate mutually exclusive demo options
+    if getattr(args, "demo", False) and getattr(args, "demo_md", False):
+        parser.error("--demo and --demo-md are mutually exclusive")
+
+    # Handle --demo option (including when --demo-text is used without --demo)
+    demo_text = getattr(args, "demo_text", None)
+    if getattr(args, "demo", False) or (
+        demo_text is not None and not getattr(args, "demo_md", False)
+    ):
+        display_all_fonts(demo_text)
         return 0
 
     # Handle --demo-md option
     if getattr(args, "demo_md", False):
-        display_all_fonts_markdown()
+        display_all_fonts_markdown(demo_text)
         return 0
 
     # Handle --config-init option

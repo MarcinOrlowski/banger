@@ -17,6 +17,7 @@
 
 ## @dev
 
+- [#0005] Add support for `--demo-text` option to specify custom text for demo displays
 - [#0023] Renamed 'default' font to 'classic' for better descriptive naming
 - [#0022] Add < and > characters to all fonts that were missing them
 - Enhanced font character support with additional punctuation and symbols across all fonts
