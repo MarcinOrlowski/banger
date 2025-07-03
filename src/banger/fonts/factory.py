@@ -18,7 +18,7 @@ from .block import BlockFont
 from .blur import BlurFont
 from .compact import CompactFont
 from .core import FontInterface
-from .default import DefaultFont
+from .classic import ClassicFont
 from .fire import FireFont
 from .matrix import MatrixFont
 from .quadrant import QuadrantFont
@@ -29,7 +29,7 @@ from .small import SmallFont
 
 # Font factory - maps font names to factory functions
 BUILTIN_FONTS: Dict[str, Callable[[], FontInterface]] = {
-    "default": lambda: DefaultFont(),
+    "classic": lambda: ClassicFont(),
     "matrix": lambda: MatrixFont(),
     "banner": lambda: BannerFont(),
     "block": lambda: BlockFont(),
@@ -54,8 +54,8 @@ def create_font(name: str) -> FontInterface:
     if name in BUILTIN_FONTS:
         return BUILTIN_FONTS[name]()
 
-    # Fallback to default
-    return BUILTIN_FONTS["default"]()
+    # Fallback to classic
+    return BUILTIN_FONTS["classic"]()
 
 
 def get_available_fonts() -> List[str]:

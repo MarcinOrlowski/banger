@@ -301,7 +301,7 @@ def main() -> int:
 
         class Args:
             def __init__(self):
-                self.font = config.get_font() or "default"
+                self.font = config.get_font() or "classic"
                 self.banner_width = config.get_banner_width()
                 self.width = config.get_width()
                 self.demo = False

@@ -101,7 +101,7 @@ class BannerGenerator:
             char_data = self._font_obj.get_character(char)
             if char_data is None:
                 # Try to get default character as fallback
-                char_data = self._font_obj.get_character("default")
+                char_data = self._font_obj.get_character("classic")
                 if char_data is None:
                     raise RuntimeError(
                         f"TTF font missing both character '{char}' and 'default' fallback"
@@ -111,7 +111,7 @@ class BannerGenerator:
             char_data = _get_character_data_object(char, self.font)
             if char_data is None:
                 # Try to get default character as fallback
-                char_data = _get_character_data_object("default", self.font)
+                char_data = _get_character_data_object("classic", self.font)
                 if char_data is None:
                     raise RuntimeError(
                         f"Font '{self.font}' missing both character '{char}' and 'default' fallback"

@@ -174,7 +174,7 @@ class TestUppercaseCompleteness(unittest.TestCase):
 
         Default font must have complete uppercase support.
         """
-        self._validate_font_uppercase_completeness("default")
+        self._validate_font_uppercase_completeness("classic")
 
 
 if __name__ == "__main__":

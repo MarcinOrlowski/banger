@@ -204,7 +204,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
 
         Default font should have good extra characters support.
         """
-        self._validate_font_extra_characters_completeness("default")
+        self._validate_font_extra_characters_completeness("classic")
 
     def test_space_character_special_handling(self):
         """Test that space character has special handling across fonts.
@@ -275,7 +275,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
             font_extra_chars = [
                 c
                 for c in chars
-                if c not in letters and c not in digits and c != "default"
+                if c not in letters and c not in digits and c != "classic"
             ]
             all_extra_chars.update(font_extra_chars)
 

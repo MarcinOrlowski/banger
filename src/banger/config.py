@@ -110,7 +110,7 @@ def create_config_template(force: bool = False) -> bool:
 # Place this file at ~/.config/banger/banger.yml
 
 # Default font to use
-# Available fonts: default, matrix, banner, block, blur, compact, fire, quadrant, small
+# Available fonts: classic, matrix, banner, block, blur, compact, fire, quadrant, small
 # font: quadrant
 
 # Default banner width in characters (auto-detects terminal width if not specified)
