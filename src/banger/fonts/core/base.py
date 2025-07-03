@@ -12,7 +12,7 @@
 """
 
 from abc import ABC
-from typing import List, Optional, Set
+from typing import List, Optional, Set, Dict, Any
 
 from .character_data import CharacterData
 from .font_metadata import FontMetadata
@@ -31,7 +31,7 @@ class BaseFont(ABC):
     - _get_all_supported_characters: Get set of all supported characters
     """
 
-    _FONT_DATA = {
+    _FONT_DATA: Dict[str, Any] = {
         "name": "???",
         "height": 7,
         "description": "???",

@@ -11,10 +11,12 @@
 ##################################################################################
 """
 
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Any, Set
 from pathlib import Path
 
 from .core import FontInterface, CharacterData, FontMetadata
+
+# We'll use Any for PIL font objects to avoid import issues during type checking
 
 """TTF Banner Font Implementation
 
@@ -60,8 +62,9 @@ class TtfFont(FontInterface):
         self.font_path = Path(font_path)
         self.font_size = font_size
         self.character_height = character_height
-        self._font = None
-        self._character_cache: Dict[str, CharacterData] = {}
+        # We use Any for PIL font objects to avoid import issues during type checking
+        self._font: Optional[Any] = None
+        self._character_cache: Dict[str, Optional[CharacterData]] = {}
         self._metadata_name_override = None
 
         # Validate font file exists
@@ -95,17 +98,19 @@ class TtfFont(FontInterface):
         self._ensure_font_loaded()
 
         # Get text bounding box
+        if self._font is None:
+            return [], 0, 0
         bbox = self._font.getbbox(char)
         if bbox == (0, 0, 0, 0):  # Character not supported
             return [], 0, 0
 
-        width = bbox[2] - bbox[0]
-        height = bbox[3] - bbox[1]
+        width = int(bbox[2] - bbox[0])
+        height = int(bbox[3] - bbox[1])
 
         # Create image with some padding
         padding = 4
-        img_width = width + 2 * padding
-        img_height = height + 2 * padding
+        img_width = int(width + 2 * padding)
+        img_height = int(height + 2 * padding)
 
         # Create white background image
         image = self._PIL_Image.new("L", (img_width, img_height), 255)
@@ -121,7 +126,14 @@ class TtfFont(FontInterface):
             for x in range(img_width):
                 pixel_value = image.getpixel((x, y))
                 # Consider pixel "set" if it's darker than middle gray
-                row.append(pixel_value < 128)
+                # Handle different pixel value types
+                if isinstance(pixel_value, (int, float)):
+                    row.append(pixel_value < 128)
+                elif isinstance(pixel_value, tuple):
+                    # For tuple, use the first value or average
+                    row.append(pixel_value[0] < 128)
+                else:
+                    row.append(False)
             bitmap_2d.append(row)
 
         # Clip bitmap to actual content bounding box (X-axis only)
@@ -129,7 +141,7 @@ class TtfFont(FontInterface):
             bitmap_2d, img_width, img_height
         )
 
-        return clipped_bitmap, clipped_width, img_height
+        return clipped_bitmap, clipped_width, int(img_height)
 
     def _clip_bitmap_to_content(
         self, bitmap_2d: list, width: int, height: int
@@ -271,7 +283,7 @@ class TtfFont(FontInterface):
             source_y = min(source_y, current_height - 1)  # Clamp to valid range
 
             # Copy the row from source
-            scaled_bitmap.append(bitmap_2d[source_y][:])
+            scaled_bitmap.append(bitmap_2d[source_y].copy())
 
         return scaled_bitmap
 
@@ -332,6 +344,28 @@ class TtfFont(FontInterface):
         """Get the font height in lines."""
         # Return the configured character height since we now scale to this
         return self.character_height
+
+    @property
+    def name(self) -> str:
+        """Get the font name."""
+        return self._metadata_name_override or f"ttf_{self.font_path.stem}"
+
+    @property
+    def description(self) -> str:
+        """Get the font description."""
+        return f"TTF font from {self.font_path.name}"
+
+    def has_character(self, char: str) -> bool:
+        """Check if the font supports a specific character."""
+        return self.get_character(char) is not None
+
+    def get_available_characters(self) -> Set[str]:
+        """Get set of all characters supported by this font."""
+        # For TTF fonts, we can't easily enumerate all supported characters
+        # without rendering them. Return a basic ASCII set as a reasonable default.
+        import string
+
+        return set(string.ascii_letters + string.digits + string.punctuation + " ")
 
 
 def list_system_ttf_fonts(sort_by="path"):

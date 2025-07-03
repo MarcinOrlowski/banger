@@ -13,7 +13,7 @@
 Core banner generation logic with proportional font support.
 """
 
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Any
 
 from .fonts import (
     _get_character_data_object,
@@ -30,7 +30,7 @@ class BannerGenerator:
     def __init__(
         self,
         max_width: Optional[int] = None,
-        font: Union[str, any] = "quadrant",
+        font: Union[str, Any] = "quadrant",
         character_width: Optional[int] = None,
     ):
         """Initialize banner generator.

@@ -190,7 +190,7 @@ def create_parser() -> argparse.ArgumentParser:
 
 def display_all_fonts() -> None:
     """Display all available fonts with samples."""
-    from .fonts import _font_supports_lowercase, _font_supports_uppercase
+    from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
 
     available_fonts = get_available_fonts()
 
@@ -228,7 +228,7 @@ def display_all_fonts() -> None:
 
 def display_all_fonts_markdown() -> None:
     """Display all available fonts in Markdown format for documentation."""
-    from .fonts import _font_supports_lowercase, _font_supports_uppercase
+    from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
 
     available_fonts = get_available_fonts()
 
@@ -319,9 +319,9 @@ def main() -> int:
         args = Args()
     else:
         try:
-            args = parser.parse_args(argv)
+            args = parser.parse_args(argv)  # type: ignore
         except SystemExit as e:
-            return e.code if e.code is not None else 1
+            return int(e.code) if e.code is not None else 1
 
     # Handle --demo option
     if getattr(args, "demo", False):
@@ -380,6 +380,8 @@ def main() -> int:
                 ttf_size = max(24, args.ttf_lines * 8)
 
             # Create TTF font instance
+            if args.ttf_font is None:
+                raise ValueError("TTF font path is required")
             ttf_font = TtfFont(args.ttf_font, ttf_size, args.ttf_lines)
             # Use the TTF font directly
             font_name = ttf_font
