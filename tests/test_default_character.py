@@ -51,7 +51,7 @@ class TestDefaultCharacter(unittest.TestCase):
         for font_name in get_available_fonts():
             with self.subTest(font=font_name):
                 font = create_font(font_name)
-                default_char_data = font.get_character("default")
+                default_char_data = font.get_character("classic")
 
                 self.assertIsNotNone(
                     default_char_data,
@@ -79,7 +79,7 @@ class TestDefaultCharacter(unittest.TestCase):
         for font_name in get_available_fonts():
             with self.subTest(font=font_name):
                 font = create_font(font_name)
-                default_char_data = font.get_character("default")
+                default_char_data = font.get_character("classic")
 
                 self.assertIsNotNone(
                     default_char_data,
@@ -106,7 +106,7 @@ class TestDefaultCharacter(unittest.TestCase):
         for font_name in get_available_fonts():
             with self.subTest(font=font_name):
                 font = create_font(font_name)
-                default_char_data = font.get_character("default")
+                default_char_data = font.get_character("classic")
 
                 self.assertIsNotNone(
                     default_char_data,
@@ -137,7 +137,7 @@ class TestDefaultCharacter(unittest.TestCase):
                 font = create_font(font_name)
                 expected_height = font.height
 
-                default_char_data = font.get_character("default")
+                default_char_data = font.get_character("classic")
                 self.assertIsNotNone(
                     default_char_data,
                     f"Font '{font_name}' has None for default character data",

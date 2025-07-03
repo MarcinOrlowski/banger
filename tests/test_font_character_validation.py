@@ -62,7 +62,7 @@ class TestFontCharacterValidation(unittest.TestCase):
     def test_validate_font_character_coverage_structure(self):
         """Test that font validation returns expected data structure."""
         # Test with default font (should be complete)
-        result = validate_font_character_coverage("default")
+        result = validate_font_character_coverage("classic")
 
         # Check required keys are present
         required_keys = {
@@ -95,7 +95,7 @@ class TestFontCharacterValidation(unittest.TestCase):
 
     def test_default_font_completeness(self):
         """Test that default font has complete character coverage."""
-        result = validate_font_character_coverage("default")
+        result = validate_font_character_coverage("classic")
 
         self.assertTrue(
             result["is_complete"],
@@ -124,7 +124,7 @@ class TestFontCharacterValidation(unittest.TestCase):
 
         # Only test original JSON fonts for complete digit coverage
         json_fonts = [
-            "default",
+            "classic",
             "block",
             "blur",
             "compact",
@@ -150,7 +150,7 @@ class TestFontCharacterValidation(unittest.TestCase):
 
         # Only test original JSON fonts for complete uppercase coverage
         json_fonts = [
-            "default",
+            "classic",
             "block",
             "blur",
             "compact",
@@ -232,7 +232,7 @@ class TestFontCharacterValidation(unittest.TestCase):
 
         # Only test original JSON fonts for complete critical character coverage
         json_fonts = [
-            "default",
+            "classic",
             "block",
             "blur",
             "compact",
@@ -269,7 +269,7 @@ class TestFontCharacterValidation(unittest.TestCase):
 
         # Only test original JSON fonts for minimum coverage
         json_fonts = [
-            "default",
+            "classic",
             "block",
             "blur",
             "compact",

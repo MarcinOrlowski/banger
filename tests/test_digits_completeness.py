@@ -174,7 +174,7 @@ class TestDigitsCompleteness(unittest.TestCase):
 
         Default font must have complete digits support.
         """
-        self._validate_font_digits_completeness("default")
+        self._validate_font_digits_completeness("classic")
 
 
 if __name__ == "__main__":

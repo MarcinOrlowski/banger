@@ -13,17 +13,17 @@
 
 from .core import BaseFont
 
-"""Default built-in font."""
+"""Classic built-in font."""
 
 
-class DefaultFont(BaseFont):
-    """Default built-in font.
+class ClassicFont(BaseFont):
+    """Classic built-in font.
 
     Classic ASCII art font with 7-line height
     """
 
     _FONT_DATA = {
-        "name": "default",
+        "name": "classic",
         "height": 7,
         "description": "Classic ASCII art font with 7-line height",
         "bottom_padding": 1,

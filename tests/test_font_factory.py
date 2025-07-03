@@ -23,10 +23,10 @@ class TestFontFactory(unittest.TestCase):
 
     def test_create_font_with_valid_name(self):
         """Test that create_font creates valid font instances."""
-        font = create_font("default")
+        font = create_font("classic")
 
         self.assertIsNotNone(font)
-        self.assertEqual(font.name, "default")
+        self.assertEqual(font.name, "classic")
         self.assertGreater(font.height, 0)
 
     def test_create_font_with_invalid_name_falls_back_to_default(self):
@@ -34,12 +34,12 @@ class TestFontFactory(unittest.TestCase):
         font = create_font("nonexistent_font")
 
         self.assertIsNotNone(font)
-        self.assertEqual(font.name, "default")
+        self.assertEqual(font.name, "classic")
 
     def test_create_font_creates_new_instances(self):
         """Test that create_font creates new instances each time (no caching)."""
-        font1 = create_font("default")
-        font2 = create_font("default")
+        font1 = create_font("classic")
+        font2 = create_font("classic")
 
         self.assertIsNotNone(font1)
         self.assertIsNotNone(font2)
@@ -51,14 +51,14 @@ class TestFontFactory(unittest.TestCase):
 
         self.assertIsInstance(font_types, list)
         self.assertGreater(len(font_types), 0)
-        self.assertIn("default", font_types)
+        self.assertIn("classic", font_types)
 
     def test_get_available_font_types_contains_expected_fonts(self):
         """Test that get_available_font_types contains expected built-in fonts."""
         font_types = get_available_fonts()
 
         expected_fonts = [
-            "default",
+            "classic",
             "matrix",
             "banner",
             "block",
@@ -87,7 +87,7 @@ class TestFontFactory(unittest.TestCase):
 
     def test_font_instances_have_required_interface(self):
         """Test that created font instances implement required interface."""
-        font = create_font("default")
+        font = create_font("classic")
 
         # Test required properties
         self.assertTrue(hasattr(font, "name"))

@@ -25,7 +25,7 @@ from .core import (
 )
 
 # Import fonts
-from .default import DefaultFont
+from .classic import ClassicFont
 from .matrix import MatrixFont
 
 # Import factory functions
@@ -65,7 +65,7 @@ __all__ = [
     "calculate_character_width",
     "normalize_character_lines",
     # Built-in fonts
-    "DefaultFont",
+    "ClassicFont",
     "MatrixFont",
     # Factory
     "create_font",

@@ -51,19 +51,19 @@ class Config:
             with open(config_path, "r", encoding="utf-8") as f:
                 self.config_data = yaml.safe_load(f) or {}
         except (yaml.YAMLError, OSError):
-            # Silently ignore config file errors - use defaults
+            # Silently ignore config file errors - use classics
             self.config_data = {}
 
     def get_font(self) -> Optional[str]:
-        """Get the default font from configuration."""
+        """Get the classic font from configuration."""
         return self.config_data.get("font")
 
     def get_banner_width(self) -> Optional[int]:
-        """Get the default banner width from configuration."""
+        """Get the classic banner width from configuration."""
         return self.config_data.get("banner_width")
 
     def get_width(self) -> Optional[int]:
-        """Get the default character width from configuration."""
+        """Get the classic character width from configuration."""
         return self.config_data.get("width")
 
 
@@ -110,7 +110,7 @@ def create_config_template(force: bool = False) -> bool:
 # Place this file at ~/.config/banger/banger.yml
 
 # Default font to use
-# Available fonts: default, matrix, banner, block, blur, compact, fire, quadrant, small
+# Available fonts: classic, matrix, banner, block, blur, compact, fire, quadrant, small
 # font: quadrant
 
 # Default banner width in characters (auto-detects terminal width if not specified)
@@ -126,7 +126,7 @@ def create_config_template(force: bool = False) -> bool:
             f.write(template_content)
 
         print(f"Configuration template created at: {config_path}")
-        print("Edit this file to customize your default settings.")
+        print("Edit this file to customize your classic settings.")
         return True
 
     except OSError as e:
