@@ -29,7 +29,7 @@ class TestFontValidation(unittest.TestCase):
     def test_all_fonts_have_correct_character_line_counts(self):
         """Test that all characters in each font have the correct number of lines."""
         # Known issues in legacy fonts that we're not fixing in this project
-        known_issues = {}
+        known_issues: dict[tuple[str, str], int] = {}
 
         for font_name in get_available_fonts():
             expected_height = get_font_height(font_name)

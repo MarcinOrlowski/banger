@@ -48,6 +48,7 @@ class TestFontHeightConsistency(unittest.TestCase):
                             char_data,
                             f"Font '{font_name}' character '{char}' returned None data",
                         )
+                        assert char_data is not None  # Type narrowing for mypy
 
                         self.assertTrue(
                             hasattr(char_data, "lines"),
@@ -107,6 +108,7 @@ class TestFontHeightConsistency(unittest.TestCase):
                             char_data,
                             f"Font '{font_name}' character '{char}' returned None data",
                         )
+                        assert char_data is not None  # Type narrowing for mypy
 
                         lines = char_data.lines
 
@@ -179,6 +181,7 @@ class TestFontHeightConsistency(unittest.TestCase):
                             char_data,
                             f"Font '{font_name}' character '{char}' returned None data",
                         )
+                        assert char_data is not None  # Type narrowing for mypy
 
                         lines = char_data.lines
                         self.assertGreater(

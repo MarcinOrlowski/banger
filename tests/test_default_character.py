@@ -85,6 +85,7 @@ class TestDefaultCharacter(unittest.TestCase):
                     default_char_data,
                     f"Font '{font_name}' has None for default character data",
                 )
+                assert default_char_data is not None  # Type narrowing for mypy
 
                 lines = default_char_data.lines
 
@@ -111,6 +112,7 @@ class TestDefaultCharacter(unittest.TestCase):
                     default_char_data,
                     f"Font '{font_name}' has None for default character data",
                 )
+                assert default_char_data is not None  # Type narrowing for mypy
 
                 width = default_char_data.width
                 self.assertIsInstance(
@@ -140,6 +142,7 @@ class TestDefaultCharacter(unittest.TestCase):
                     default_char_data,
                     f"Font '{font_name}' has None for default character data",
                 )
+                assert default_char_data is not None  # Type narrowing for mypy
 
                 lines = default_char_data.lines
                 actual_height = len(lines)

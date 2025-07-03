@@ -51,6 +51,7 @@ class TestSpaceCharacterValidation(unittest.TestCase):
                     space_char,
                     f"Font '{font_name}' does not have space character (' ') defined",
                 )
+                assert space_char is not None  # Type narrowing for mypy
 
                 # Verify trim flag is False
                 self.assertFalse(
@@ -66,6 +67,12 @@ class TestSpaceCharacterValidation(unittest.TestCase):
             with self.subTest(font=font_name):
                 font = create_font(font_name)
                 space_char = font.get_character(" ")
+
+                # Verify space character exists
+                self.assertIsNotNone(
+                    space_char, f"Font '{font_name}' space character not found"
+                )
+                assert space_char is not None  # Type narrowing for mypy
 
                 # Verify space character has lines
                 self.assertIsNotNone(
@@ -95,6 +102,12 @@ class TestSpaceCharacterValidation(unittest.TestCase):
             with self.subTest(font=font_name):
                 font = create_font(font_name)
                 space_char = font.get_character(" ")
+
+                # Verify space character exists
+                self.assertIsNotNone(
+                    space_char, f"Font '{font_name}' space character not found"
+                )
+                assert space_char is not None  # Type narrowing for mypy
 
                 # Verify space character has positive width
                 self.assertGreater(

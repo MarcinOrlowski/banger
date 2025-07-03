@@ -72,6 +72,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
                     char_data,
                     f"Font '{font_name}' character {repr(char)} returned None data",
                 )
+                assert char_data is not None  # Type narrowing for mypy
 
                 # Must have lines attribute
                 self.assertTrue(
@@ -223,6 +224,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
                         char_data,
                         f"Font '{font_name}' space character returned None data",
                     )
+                    assert char_data is not None  # Type narrowing for mypy
 
                     # Space should have lines
                     self.assertTrue(
