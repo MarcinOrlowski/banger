@@ -5,20 +5,28 @@
 
 ## Technical Approach
 
-Replace hardcoded Unix-style configuration paths with `platformdirs` library to automatically determine OS-appropriate configuration directories. Implement a new `ConfigManager` class that encapsulates all configuration operations and handles migration from legacy locations. The existing `Config` class will be refactored to use the new manager internally, maintaining full backward compatibility with the current API.
+Replace hardcoded Unix-style configuration paths with `platformdirs` library to automatically determine OS-appropriate
+configuration directories. Implement a new `ConfigManager` class that encapsulates all configuration operations and
+handles migration from legacy locations. The existing `Config` class will be refactored to use the new manager internally,
+maintaining full backward compatibility with the current API.
 
 ## Data Model
 
 No database changes required. File system changes only:
 
-```
+```text
 Current Structure:
 ~/.config/banger/banger.yml (Linux/Unix only)
 
-New Structure:
+New Cross-Platform Structure:
 Linux:   ~/.config/banger/banger.yml
 macOS:   ~/Library/Application Support/banger/banger.yml
-Windows: %APPDATA%/banger/banger/banger.yml
+Windows: %APPDATA%\banger\banger\banger.yml
+
+Example Paths:
+Linux:   /home/username/.config/banger/banger.yml
+macOS:   /Users/username/Library/Application Support/banger/banger.yml
+Windows: C:\Users\username\AppData\Roaming\banger\banger\banger.yml
 ```
 
 Migration logic: Check for old config at `~/.config/banger/banger.yml` and copy to new location if new location doesn't exist.
@@ -56,7 +64,8 @@ class Config:
 
 1. **Risk**: Legacy config migration fails silently → **Mitigation**: Return boolean from migration function and log results
 2. **Risk**: `platformdirs` not available on older systems → **Mitigation**: Add minimum version requirement in pyproject.toml
-3. **Risk**: Permission errors in new config directories → **Mitigation**: Use existing error handling pattern (silent fallback to defaults)
+3. **Risk**: Permission errors in new config directories → **Mitigation**: Use existing error handling pattern
+   (silent fallback to defaults)
 
 ## Implementation Plan
 

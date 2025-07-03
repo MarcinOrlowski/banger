@@ -34,6 +34,17 @@
 - Maintain existing YAML format and all current functionality
 - No breaking changes to public API
 
+## Platform-Specific Configuration Locations
+
+The new implementation will store configuration files in OS-appropriate directories:
+
+- **Linux**: `~/.config/banger/banger.yml`
+  - Example: `/home/username/.config/banger/banger.yml`
+- **macOS**: `~/Library/Application Support/banger/banger.yml`
+  - Example: `/Users/username/Library/Application Support/banger/banger.yml`
+- **Windows**: `%APPDATA%\banger\banger\banger.yml`
+  - Example: `C:\Users\username\AppData\Roaming\banger\banger\banger.yml`
+
 **Total Estimated Time:** 5 days
 
 **Risk Level:** Low - Internal refactor with backward compatibility maintained
