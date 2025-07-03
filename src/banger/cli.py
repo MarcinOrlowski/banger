@@ -129,7 +129,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--config-init",
         action="store_true",
-        help="Create a template configuration file at ~/.config/banger/banger.yml",
+        help="Create a template configuration file in the OS-appropriate config directory",
     )
 
     parser.add_argument(
