@@ -56,9 +56,9 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
         # Check that reference extra characters exist
         missing_chars = self.REFERENCE_EXTRA_CHARACTERS - available_chars
         if missing_chars:
-            # Allow fonts to not have all extra characters (not all fonts may support all symbols)
-            self.skipTest(
-                f"Font '{font_name}' missing extra characters: {sorted(missing_chars)} - skipping validation"
+            # All fonts must now have all reference extra characters
+            self.fail(
+                f"Font '{font_name}' missing required extra characters: {sorted(missing_chars)}"
             )
 
         # Validate each available extra character has proper structure
