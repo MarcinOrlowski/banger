@@ -13,6 +13,10 @@
 
 # Changelog
 
+## @dev
+
+- Enhanced font character support with additional punctuation and symbols across all fonts
+
 ## v1.0.0 (2025-06-22)
 
 - Initial public release

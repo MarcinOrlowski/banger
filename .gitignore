@@ -1,7 +1,6 @@
 /.pre-commit-config.yaml
 /.flake8
 
-/.idea/
 # Python
 __pycache__/
 *.py[cod]
@@ -26,15 +25,8 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Django
 *.log
-*.pot
 *.pyc
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-/media
 
 # IDE
 .vscode/
@@ -61,15 +53,17 @@ package-lock.json
 # Compiled CSS
 /static/dist/
 
-# Claude settings
-**/.claude/settings.local.json
+# Agent settings
+**/.claude/
 **/CLAUDE.local.md
 **/CLAUDE.md
+**/.gemini/
+**/GEMINI.md
 **/.claude/
 # Do not add trailing slash for .roo entry, it will not work for symlinked folders
 .roo
 .roomodes
 
-/.pre-commit-config.yaml
+.milestone
 
 .coverage
