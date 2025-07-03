@@ -73,23 +73,23 @@ def create_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
-    # Load configuration classics
+    # Load configuration defaults
     config = get_config()
-    classic_font = config.get_font() or "quadrant"
+    default_font = config.get_font() or "quadrant"
 
     available_fonts = get_available_fonts()
     parser.add_argument(
         "--font",
-        classic=classic_font,
+        default=default_font,
         choices=available_fonts,
-        help="Built-in font to use for rendering (classic: %(classic)s).",
+        help="Built-in font to use for rendering (default: %(default)s).",
     )
 
     parser.add_argument(
         "--banner-width",
         type=int,
         metavar="CHARS",
-        help="Maximum total banner width in characters (classic: auto-detect terminal width)",
+        help="Maximum total banner width in characters (default: auto-detect terminal width)",
     )
 
     def positive_int(value):
@@ -104,7 +104,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--width",
         type=positive_int,
         metavar="CHARS",
-        help="Minimum recommended width for each character (classic: use characters' real width)",
+        help="Minimum recommended width for each character (default: use characters' real width)",
     )
 
     parser.add_argument(
@@ -141,15 +141,15 @@ def create_parser() -> argparse.ArgumentParser:
         "--ttf-size",
         type=positive_int,
         metavar="SIZE",
-        help="TTF font size in points (classic: auto-calculated based on --ttf-lines)",
+        help="TTF font size in points (default: auto-calculated based on --ttf-lines)",
     )
 
     parser.add_argument(
         "--ttf-lines",
         type=positive_int,
-        classic=7,
+        default=7,
         metavar="LINES",
-        help="Output height in terminal lines (classic: %(classic)s)",
+        help="Output height in terminal lines (default: %(default)s)",
     )
 
     parser.add_argument(
@@ -161,9 +161,9 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--ttf-list-sort",
         choices=["name", "path"],
-        classic="path",
+        default="path",
         metavar="SORT",
-        help="Sort TTF/OTF font list by name or path (classic: %(classic)s)",
+        help="Sort TTF/OTF font list by name or path (default: %(default)s)",
     )
 
     parser.add_argument(
@@ -296,7 +296,7 @@ def main() -> int:
         if not text_args:
             parser.error("argument text: expected at least one argument after --")
 
-        # Create a minimal args object with config classics
+        # Create a minimal args object with config defaults
         config = get_config()
 
         class Args:

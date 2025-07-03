@@ -51,19 +51,19 @@ class Config:
             with open(config_path, "r", encoding="utf-8") as f:
                 self.config_data = yaml.safe_load(f) or {}
         except (yaml.YAMLError, OSError):
-            # Silently ignore config file errors - use classics
+            # Silently ignore config file errors - use defaults
             self.config_data = {}
 
     def get_font(self) -> Optional[str]:
-        """Get the classic font from configuration."""
+        """Get the default font from configuration."""
         return self.config_data.get("font")
 
     def get_banner_width(self) -> Optional[int]:
-        """Get the classic banner width from configuration."""
+        """Get the default banner width from configuration."""
         return self.config_data.get("banner_width")
 
     def get_width(self) -> Optional[int]:
-        """Get the classic character width from configuration."""
+        """Get the default character width from configuration."""
         return self.config_data.get("width")
 
 
@@ -126,7 +126,7 @@ def create_config_template(force: bool = False) -> bool:
             f.write(template_content)
 
         print(f"Configuration template created at: {config_path}")
-        print("Edit this file to customize your classic settings.")
+        print("Edit this file to customize your default settings.")
         return True
 
     except OSError as e:
