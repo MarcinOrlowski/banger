@@ -13,11 +13,66 @@
 Configuration management for banger.
 """
 
+import shutil
 import sys
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 
 import yaml
+from platformdirs import user_config_dir
+
+
+class ConfigManager:
+    """Cross-platform configuration file manager."""
+
+    def __init__(self, app_name: str = "banger", app_author: str = "MarcinOrlowski"):
+        """Initialize configuration manager.
+
+        Args:
+            app_name: Application name for directory creation
+            app_author: Application author for directory creation
+        """
+        self.app_name = app_name
+        self.app_author = app_author
+        self._config_dir: Optional[Path] = None
+        self._config_file: Optional[Path] = None
+
+    def get_config_dir(self) -> Path:
+        """Get the OS-appropriate configuration directory."""
+        if self._config_dir is None:
+            self._config_dir = Path(user_config_dir(self.app_name, self.app_author))
+        return self._config_dir
+
+    def get_config_file_path(self) -> Path:
+        """Get the full path to the configuration file."""
+        if self._config_file is None:
+            self._config_file = self.get_config_dir() / "banger.yml"
+        return self._config_file
+
+    def ensure_config_dir(self) -> None:
+        """Create configuration directory if it doesn't exist."""
+        self.get_config_dir().mkdir(parents=True, exist_ok=True)
+
+    def migrate_legacy_config(self) -> bool:
+        """Migrate configuration from legacy location if needed.
+
+        Returns:
+            True if migration was performed, False otherwise
+        """
+        legacy_config = Path.home() / ".config" / "banger" / "banger.yml"
+        new_config = self.get_config_file_path()
+
+        # Only migrate if legacy exists and new doesn't
+        if legacy_config.exists() and not new_config.exists():
+            try:
+                self.ensure_config_dir()
+                shutil.copy2(legacy_config, new_config)
+                return True
+            except OSError:
+                # Migration failed, but don't crash - just continue
+                pass
+
+        return False
 
 
 class Config:
@@ -25,21 +80,21 @@ class Config:
 
     def __init__(self):
         self.config_data: Dict[str, Any] = {}
+        self._config_manager = ConfigManager()
+        # Attempt migration on first initialization
+        self._config_manager.migrate_legacy_config()
         self._load_config()
 
     def _get_config_path(self) -> Optional[Path]:
         """Get the path to the configuration file."""
-        config_dir = Path.home() / ".config" / "banger"
-        config_file = config_dir / "banger.yml"
-
+        config_file = self._config_manager.get_config_file_path()
         if config_file.exists():
             return config_file
         return None
 
     def get_config_file_path(self) -> Path:
         """Get the full path to the configuration file (whether it exists or not)."""
-        config_dir = Path.home() / ".config" / "banger"
-        return config_dir / "banger.yml"
+        return self._config_manager.get_config_file_path()
 
     def _load_config(self) -> None:
         """Load configuration from YAML file."""
@@ -103,14 +158,15 @@ def create_config_template(force: bool = False) -> bool:
         sys.exit(1)
 
     # Create config directory if it doesn't exist
-    config_path.parent.mkdir(parents=True, exist_ok=True)
+    config._config_manager.ensure_config_dir()
 
     # Template content with all options commented out
-    template_content = """# Configuration file for banger
-# Place this file at ~/.config/banger/banger.yml
+    template_content = f"""# Configuration file for banger
+# This file is automatically placed in the OS-appropriate configuration directory:
+# {config_path}
 
 # Default font to use
-# Available fonts: default, matrix, banner, block, blur, compact, fire, quadrant, small
+# Available fonts: classic, matrix, banner, block, blur, compact, fire, quadrant, small
 # font: quadrant
 
 # Default banner width in characters (auto-detects terminal width if not specified)

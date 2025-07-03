@@ -29,7 +29,7 @@ class TestFontValidation(unittest.TestCase):
     def test_all_fonts_have_correct_character_line_counts(self):
         """Test that all characters in each font have the correct number of lines."""
         # Known issues in legacy fonts that we're not fixing in this project
-        known_issues = {}
+        known_issues: dict[tuple[str, str], int] = {}
 
         for font_name in get_available_fonts():
             expected_height = get_font_height(font_name)
@@ -98,7 +98,7 @@ class TestFontValidation(unittest.TestCase):
         """Test that get_font_height returns the correct height for each font."""
         # Predefined expected heights for known fonts
         expected_heights = {
-            "default": 7,
+            "classic": 7,
             "quadrant": 5,
             "matrix": 5,
             "small": 5,
@@ -129,9 +129,9 @@ class TestFontValidation(unittest.TestCase):
     def test_get_character_data_returns_valid_structure(self):
         """Test that get_character_data returns properly structured data."""
         test_cases = [
-            ("A", "default"),
-            ("a", "default"),
-            ("0", "default"),
+            ("A", "classic"),
+            ("a", "classic"),
+            ("0", "classic"),
             ("A", "quadrant"),
             ("a", "quadrant"),
             ("0", "quadrant"),
@@ -278,7 +278,7 @@ class TestFontValidation(unittest.TestCase):
         )
 
         # Should have same data as default font
-        default_char_data = get_character_data("A", "default")
+        default_char_data = get_character_data("A", "classic")
         self.assertEqual(
             char_data["lines"],
             default_char_data["lines"],
@@ -296,7 +296,7 @@ class TestFontValidation(unittest.TestCase):
 
         for char in unknown_chars:
             with self.subTest(char=char):
-                char_data = get_character_data(char, "default")
+                char_data = get_character_data(char, "classic")
                 # Most unknown characters should return None (original behavior)
                 # Some might be handled, so we just test that it doesn't crash
                 if char_data is not None:

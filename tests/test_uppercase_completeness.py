@@ -53,6 +53,7 @@ class TestUppercaseCompleteness(unittest.TestCase):
                     char_data,
                     f"Font '{font_name}' character '{letter}' returned None data",
                 )
+                assert char_data is not None  # Type narrowing for mypy
 
                 # Must have lines attribute
                 self.assertTrue(
@@ -173,7 +174,7 @@ class TestUppercaseCompleteness(unittest.TestCase):
 
         Default font must have complete uppercase support.
         """
-        self._validate_font_uppercase_completeness("default")
+        self._validate_font_uppercase_completeness("classic")
 
 
 if __name__ == "__main__":

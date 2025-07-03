@@ -13,7 +13,7 @@
 Core banner generation logic with proportional font support.
 """
 
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Any
 
 from .fonts import (
     _get_character_data_object,
@@ -30,7 +30,7 @@ class BannerGenerator:
     def __init__(
         self,
         max_width: Optional[int] = None,
-        font: Union[str, any] = "quadrant",
+        font: Union[str, Any] = "quadrant",
         character_width: Optional[int] = None,
     ):
         """Initialize banner generator.
@@ -101,7 +101,7 @@ class BannerGenerator:
             char_data = self._font_obj.get_character(char)
             if char_data is None:
                 # Try to get default character as fallback
-                char_data = self._font_obj.get_character("default")
+                char_data = self._font_obj.get_character("classic")
                 if char_data is None:
                     raise RuntimeError(
                         f"TTF font missing both character '{char}' and 'default' fallback"
@@ -111,7 +111,7 @@ class BannerGenerator:
             char_data = _get_character_data_object(char, self.font)
             if char_data is None:
                 # Try to get default character as fallback
-                char_data = _get_character_data_object("default", self.font)
+                char_data = _get_character_data_object("classic", self.font)
                 if char_data is None:
                     raise RuntimeError(
                         f"Font '{self.font}' missing both character '{char}' and 'default' fallback"

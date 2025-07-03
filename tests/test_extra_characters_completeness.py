@@ -56,9 +56,9 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
         # Check that reference extra characters exist
         missing_chars = self.REFERENCE_EXTRA_CHARACTERS - available_chars
         if missing_chars:
-            # Allow fonts to not have all extra characters (not all fonts may support all symbols)
-            self.skipTest(
-                f"Font '{font_name}' missing extra characters: {sorted(missing_chars)} - skipping validation"
+            # All fonts must now have all reference extra characters
+            self.fail(
+                f"Font '{font_name}' missing required extra characters: {sorted(missing_chars)}"
             )
 
         # Validate each available extra character has proper structure
@@ -72,6 +72,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
                     char_data,
                     f"Font '{font_name}' character {repr(char)} returned None data",
                 )
+                assert char_data is not None  # Type narrowing for mypy
 
                 # Must have lines attribute
                 self.assertTrue(
@@ -203,7 +204,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
 
         Default font should have good extra characters support.
         """
-        self._validate_font_extra_characters_completeness("default")
+        self._validate_font_extra_characters_completeness("classic")
 
     def test_space_character_special_handling(self):
         """Test that space character has special handling across fonts.
@@ -223,6 +224,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
                         char_data,
                         f"Font '{font_name}' space character returned None data",
                     )
+                    assert char_data is not None  # Type narrowing for mypy
 
                     # Space should have lines
                     self.assertTrue(
@@ -273,7 +275,7 @@ class TestExtraCharactersCompleteness(unittest.TestCase):
             font_extra_chars = [
                 c
                 for c in chars
-                if c not in letters and c not in digits and c != "default"
+                if c not in letters and c not in digits and c != "classic"
             ]
             all_extra_chars.update(font_extra_chars)
 

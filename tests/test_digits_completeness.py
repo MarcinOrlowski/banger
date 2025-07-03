@@ -53,6 +53,7 @@ class TestDigitsCompleteness(unittest.TestCase):
                     char_data,
                     f"Font '{font_name}' character '{digit}' returned None data",
                 )
+                assert char_data is not None  # Type narrowing for mypy
 
                 # Must have lines attribute
                 self.assertTrue(
@@ -173,7 +174,7 @@ class TestDigitsCompleteness(unittest.TestCase):
 
         Default font must have complete digits support.
         """
-        self._validate_font_digits_completeness("default")
+        self._validate_font_digits_completeness("classic")
 
 
 if __name__ == "__main__":

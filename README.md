@@ -8,8 +8,13 @@
 ████      ▟███▌ ████▖     ▟███▌ ████     ████  ▄▄        ███▘ ▝▜████████████  ████  ▝███▙
 ██████████████  ▝█████████████▌ ▄▄▄▄     ▄▄▄▄   ▜▄▄▄▟███████    ▝▀▀▀▀▀▀▀▀▀▀▘  ████    ▜███▖
 ▀▀▀▀▀▀▀▀▀▀▀▀▀     ▀▀▀▀▀▀▀▀▝▀▀▀▘ ▝▘▝▘     ▝▘▝▘  ▐█▀▀▀▀▀▀▀▀▀▀                   ▀▀▀▀     ▝▀▀▀▘
+                                               ▝
 ┅┅┅ Your banner deserves to be a bänger ┅┅┅┅┅┅ https://github.com/MarcinOrlowski/banger ┅┅┅
 ```
+
+![PyPI - Version](https://img.shields.io/pypi/v/banger?style=flat)
+![GitHub License](https://img.shields.io/github/license/MarcinOrlowski/banger)
+[![PyPI Downloads](https://static.pepy.tech/badge/banger)](https://pepy.tech/projects/banger)
 
 ---
 
@@ -21,6 +26,7 @@ character set and support for rendering any TTF/OTF font with Unicode!
 
 ## Key Features
 
+- **Built-in fonts**: use built-in fonts to bang!
 - **Endless font options**: use any TTF/OTF font installed on your system,
 - **Better typography**  with proportional spacing that saves significant screen space,
 - **Compatible** with original Unix `banner` tool,

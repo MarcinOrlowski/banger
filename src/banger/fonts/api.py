@@ -11,7 +11,7 @@
 ##################################################################################
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional, Set
 
 from .factory import get_available_fonts as _get_available_font_types, create_font
 from .constants import MANDATORY_CHARACTERS
@@ -168,7 +168,9 @@ def get_all_fonts_validation_report() -> Dict[str, Dict[str, Any]]:
     return report
 
 
-def get_max_character_width(font_name: str, characters: str = None) -> int:
+def get_max_character_width(
+    font_name: str, characters: Optional[Set[str]] = None
+) -> int:
     """Get maximum character width for a font.
 
     Args:
