@@ -63,7 +63,7 @@ character set and support for rendering any TTF/OTF font with Unicode!
 ## Installation
 
 This is regular Python package and is also hosted
-on [PyPi](https://pypi.org/project/website-as-app/) so
+on [PyPi](https://pypi.org/project/banger/) so
 you can install it as usual. But because this one is supposed to rather act as the application, I
 strongly recommend to use [pipx](https://pipx.pypa.io/) to install this tool in isolated
 environment be it on Linux, Windows or MacOS machines. Once you got `pipx` up
