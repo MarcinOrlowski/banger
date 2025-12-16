@@ -13,7 +13,7 @@
 
 import unittest
 
-from banger.fonts.factory import create_font, get_available_fonts
+from banger_lib.fonts.factory import create_font, get_available_fonts
 
 """Unit tests for font factory functionality."""
 

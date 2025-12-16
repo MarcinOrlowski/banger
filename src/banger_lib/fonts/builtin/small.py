@@ -11,7 +11,7 @@
 ##################################################################################
 """
 
-from .core.base import BaseFont
+from ..core import BaseFont
 
 """Compact font with 5-line height."""
 

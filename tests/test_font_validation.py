@@ -13,7 +13,7 @@
 
 import unittest
 
-from banger.fonts import (
+from banger_lib.fonts import (
     get_font_height,
     get_character_data,
     get_available_fonts,
@@ -238,7 +238,7 @@ class TestFontValidation(unittest.TestCase):
 
     def test_quadrant_font_can_render_full_alphabet_and_numbers(self):
         """Integration test: verify quadrant font can render complete character sets without errors."""
-        from banger.core import BannerGenerator
+        from banger_lib import Banger
 
         test_cases = [
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ",  # All uppercase
@@ -249,7 +249,7 @@ class TestFontValidation(unittest.TestCase):
 
         for text in test_cases:
             with self.subTest(text=text[:20] + "..." if len(text) > 20 else text):
-                generator = BannerGenerator(max_width=1000, font="quadrant")
+                generator = Banger(max_width=1000, font="quadrant")
                 generator.add_text(text)
                 result = generator.render()
 

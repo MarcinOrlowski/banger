@@ -24,7 +24,7 @@ from .fonts import (
 from .terminal import get_terminal_width
 
 
-class BannerGenerator:
+class Banger:
     """Generate banners from text using ASCII art characters with proportional spacing support."""
 
     def __init__(

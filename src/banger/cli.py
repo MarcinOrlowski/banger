@@ -20,9 +20,14 @@ from typing import Optional
 
 from .config import create_config_template, get_config
 from .constants import Consts
-from .core import BannerGenerator
-from .fonts import get_available_fonts
-from .terminal import get_terminal_width
+
+from banger_lib import Banger
+from banger_lib.fonts import (
+    get_available_fonts,
+    _font_supports_lowercase,
+    _font_supports_uppercase,
+)
+from banger_lib.terminal import get_terminal_width
 
 
 def expand_special_text(text: str) -> str:
@@ -201,8 +206,6 @@ def display_all_fonts(demo_text: Optional[str] = None) -> None:
     Args:
         demo_text: Custom text for demos. If None, auto-generates based on font.
     """
-    from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
-
     available_fonts = get_available_fonts()
 
     for font_name in available_fonts:
@@ -237,9 +240,9 @@ def display_all_fonts(demo_text: Optional[str] = None) -> None:
 
         # Generate and print each example
         for example_text in examples:
-            generator = BannerGenerator(font=font_name)
-            generator.add_text(example_text)
-            print(generator.render(), end="")
+            banger = Banger(font=font_name)
+            banger.add_text(example_text)
+            print(banger.render(), end="")
 
 
 def display_all_fonts_markdown(demo_text: Optional[str] = None) -> None:
@@ -248,8 +251,6 @@ def display_all_fonts_markdown(demo_text: Optional[str] = None) -> None:
     Args:
         demo_text: Custom text for demos. If None, auto-generates based on font.
     """
-    from .fonts.api import _font_supports_lowercase, _font_supports_uppercase
-
     available_fonts = get_available_fonts()
 
     for font_name in available_fonts:
@@ -301,9 +302,9 @@ def display_all_fonts_markdown(demo_text: Optional[str] = None) -> None:
 
         # Generate and print single merged line
         print("```ascii")
-        generator = BannerGenerator(font=font_name)
-        generator.add_text(combined_text)
-        output = generator.render()
+        banger = Banger(font=font_name)
+        banger.add_text(combined_text)
+        output = banger.render()
         print(output.rstrip())
         print("```")
         print()
@@ -433,7 +434,7 @@ def main() -> int:
 
     # Process each text argument as a separate banner
     for word in args.text:
-        generator = BannerGenerator(
+        banger = Banger(
             max_width=banner_width, font=font_name, character_width=args.width
         )
 
@@ -445,8 +446,8 @@ def main() -> int:
         for whitespace_char in "\t\n\r\v\f":
             processed_word = processed_word.replace(whitespace_char, " ")
 
-        generator.add_text(processed_word)
-        print(generator.render(), end="")
+        banger.add_text(processed_word)
+        print(banger.render(), end="")
 
     return 0
 

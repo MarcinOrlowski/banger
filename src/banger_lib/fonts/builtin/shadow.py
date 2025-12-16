@@ -11,7 +11,7 @@
 ##################################################################################
 """
 
-from .core.base import BaseFont
+from ..core import BaseFont
 
 """Shadow style font with 3D effect."""
 

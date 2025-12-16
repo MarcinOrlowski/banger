@@ -11,7 +11,7 @@
 ##################################################################################
 """
 
-from .core.base import BaseFont
+from ..core import BaseFont
 
 """Unicode quadrant based compact block font."""
 

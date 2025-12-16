@@ -12,8 +12,8 @@
 """
 
 import unittest
-from banger.fonts import get_available_fonts
-from banger.fonts.factory import create_font
+from banger_lib.fonts import get_available_fonts
+from banger_lib.fonts.factory import create_font
 
 """Unit tests for validating space character implementation in all fonts."""
 
