@@ -11,7 +11,7 @@ Both packages defined in `pyproject.toml`.
 
 ## Package Structure
 
-```
+```ascii
 src/
 ├── banger_lib/
 │   ├── __init__.py           # Public API exports
@@ -120,7 +120,7 @@ class CharacterNotSupportedError(BangerError): ...
 
 1. Create `src/banger_lib/` structure
 2. Move fonts/, terminal.py, core logic to banger_lib
-3. Create exceptions.py, update __init__.py
+3. Create exceptions.py, update `__init__.py`
 4. Add `render()` convenience function
 5. Update banger/cli.py imports to use banger_lib
 6. Update pyproject.toml
