@@ -124,6 +124,10 @@ ignore =
     WPS442,
     # WPS600 Found subclassing a builtin: list
     WPS600,
+    # WPS458 Found imports collision
+    WPS458,
+    # WPS235 Found too many imported names from a module
+    WPS235,
     # WPS602 Found using `@staticmethod`
     WPS602,
     # WPS604 Found incorrect node inside `class` body
