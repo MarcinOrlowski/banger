@@ -11,7 +11,7 @@
 ##################################################################################
 """
 
-from .core import BaseFont
+from ..core import BaseFont
 
 """Classic built-in font."""
 

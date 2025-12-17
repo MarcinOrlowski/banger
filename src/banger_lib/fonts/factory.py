@@ -11,24 +11,26 @@
 ##################################################################################
 """
 
-from typing import Dict, Callable, List
+from typing import Dict, Callable, List, Type
 
-from .banner import BannerFont
-from .block import BlockFont
-from .blur import BlurFont
-from .compact import CompactFont
+from .builtin import (
+    BannerFont,
+    BlockFont,
+    BlurFont,
+    ClassicFont,
+    CompactFont,
+    FireFont,
+    MatrixFont,
+    QuadrantFont,
+    ShadowFont,
+    SmallFont,
+)
 from .core import FontInterface
-from .classic import ClassicFont
-from .fire import FireFont
-from .matrix import MatrixFont
-from .quadrant import QuadrantFont
-from .shadow import ShadowFont
-from .small import SmallFont
 
 """Font factory and management."""
 
 # Font factory - maps font names to factory functions
-BUILTIN_FONTS: Dict[str, Callable[[], FontInterface]] = {
+_FONTS: Dict[str, Callable[[], FontInterface]] = {
     "classic": lambda: ClassicFont(),
     "matrix": lambda: MatrixFont(),
     "banner": lambda: BannerFont(),
@@ -42,20 +44,36 @@ BUILTIN_FONTS: Dict[str, Callable[[], FontInterface]] = {
 }
 
 
-def create_font(name: str) -> FontInterface:
+def register_font(name: str, font_class: Type[FontInterface]) -> None:
+    """Register a custom font.
+
+    Args:
+        name: Name to register the font under
+        font_class: Font class (must implement FontInterface)
+    """
+    _FONTS[name] = lambda: font_class()
+
+
+def create_font(name: str, fallback: bool = True) -> FontInterface:
     """Create a font instance by name.
 
     Args:
         name: Font name to create
+        fallback: If True, fall back to classic font if not found
 
     Returns:
-        Font instance, falls back to default if not found
-    """
-    if name in BUILTIN_FONTS:
-        return BUILTIN_FONTS[name]()
+        Font instance
 
-    # Fallback to classic
-    return BUILTIN_FONTS["classic"]()
+    Raises:
+        KeyError: If font not found and fallback is False
+    """
+    if name in _FONTS:
+        return _FONTS[name]()
+
+    if fallback:
+        return _FONTS["classic"]()
+
+    raise KeyError(f"Font not found: {name}")
 
 
 def get_available_fonts() -> List[str]:
@@ -64,4 +82,4 @@ def get_available_fonts() -> List[str]:
     Returns:
         List of available font type names
     """
-    return list(BUILTIN_FONTS.keys())
+    return list(_FONTS.keys())

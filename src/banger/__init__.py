@@ -11,9 +11,12 @@
 ##################################################################################
 
 Classic Unix banner command reimplemented in Python.
+
+This is the CLI package. For the library API, use banger_lib.
 """
 
-from .core import BannerGenerator
-from .fonts import DEFAULT_CHAR_SPACING
+# Re-export from banger_lib
+from banger_lib import Banger
+from banger_lib.fonts import DEFAULT_CHAR_SPACING
 
-__all__ = ["BannerGenerator", "DEFAULT_CHAR_SPACING"]
+__all__ = ["Banger", "DEFAULT_CHAR_SPACING"]

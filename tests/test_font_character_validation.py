@@ -13,7 +13,7 @@
 
 import unittest
 
-from banger.fonts import (
+from banger_lib.fonts import (
     get_available_fonts,
     validate_font_character_coverage,
     get_all_fonts_validation_report,

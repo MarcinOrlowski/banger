@@ -15,6 +15,10 @@
 
 # Changelog
 
+## @dev
+
+- [#0030] Extracted core functionality into `banger_lib` library package.
+
 ## V1.1.0 (2025-07-03)
 
 - [#0004] Refactored configuration file handling to use OS-appropriate directories for cross-platform compatibility.

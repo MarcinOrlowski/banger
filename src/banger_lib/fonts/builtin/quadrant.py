@@ -25,7 +25,7 @@
 #    ·X      XX      XX      XX      XX
 """
 
-from .core.base import BaseFont
+from ..core import BaseFont
 
 """Unicode quadrant block font."""
 
