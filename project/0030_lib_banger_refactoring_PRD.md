@@ -126,7 +126,7 @@ except FontNotFoundError as e:
 
 ## Package Structure
 
-```
+```ascii
 src/
 ├── banger_lib/                    # Core library
 │   ├── __init__.py               # Public API exports
