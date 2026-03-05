@@ -1,8 +1,4 @@
-
-<center>
-<img src="img/logo-512.webp">
-</center>
-
+![Bänger Logo](img/logo-512.webp)
 
 ![PyPI - Version](https://img.shields.io/pypi/v/banger?style=flat)
 [![PyPI Downloads](https://static.pepy.tech/badge/banger)](https://pepy.tech/projects/banger)
