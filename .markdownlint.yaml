@@ -1,15 +1,17 @@
-####################################################################
+##################################################################################
 #
-# Olza Logistic's Mail Gateway API
+# Bänger by Marcin Orlowski
+# Because your `banner` deserves to be a `bänger`!
 #
-# author    Marcin Orlowski <mail@MmarcinOrlowski.com>
-# copyright 2024 DevelArt
+# @author    Marcin Orlowski <mail@marcinOrlowski.com>
+# Copyright  ©2025-2026 Marcin Orlowski <MarcinOrlowski.com>
+# @link      https://github.com/MarcinOrlowski/banger
 #
-# Based on default config file. Changes annotated with "MOR" initials.
+##################################################################################
 #
 # markdownlint project: https://github.com/DavidAnson/markdownlint
 #
-####################################################################
+##################################################################################
 
 # Default state for all rules
 default: true

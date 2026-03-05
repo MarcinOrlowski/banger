@@ -1,5 +1,12 @@
 ##################################################################################
 #
+# Bänger by Marcin Orlowski
+# Because your `banner` deserves to be a `bänger`!
+#
+# @author    Marcin Orlowski <mail@marcinOrlowski.com>
+# Copyright  ©2025-2026 Marcin Orlowski <MarcinOrlowski.com>
+# @link      https://github.com/MarcinOrlowski/banger
+#
 ##################################################################################
 #
 # Using pre-commit hooks #
@@ -13,8 +20,7 @@
 #
 # * Ensure you got Python installed
 # * Install pre-commit: `pip install pre-commit`
-# * Go to your Logisim-evolution source code root directory
-# * Copy provided config file template: `cp .pre-commit-config.yaml.dist .pre-commit-config.yaml`
+# * Go to project root folder
 # * Plug hooks into Git pipeline: `pre-commit install`
 #
 # See `pre-commit` official installation docs too: https://pre-commit.com/#install
