@@ -1,3 +1,21 @@
+
+<center>
+<img src="img/logo-512.webp">
+</center>
+
+
+![PyPI - Version](https://img.shields.io/pypi/v/banger?style=flat)
+[![PyPI Downloads](https://static.pepy.tech/badge/banger)](https://pepy.tech/projects/banger)
+![MIT License](https://img.shields.io/github/license/MarcinOrlowski/banger)
+
+---
+
+# What it is?
+
+`Bänger` (pronounced just `banger`) is a modern tribute to the classic Unix `banner` command line
+utility that produces text banners, with additional features added a top:  multiple built-in ASCII
+character set and support for rendering any TTF/OTF font with Unicode!
+
 ```ascii
 ▙▄▄                ▗▟█▙  ▟█▙    ▐▄▄              ▄▄▄▄▄▄▄▄▄█             ▗█    ▙▄▖
 ▜██████████▄▖        ▀    ▀ ▗█  ▝█████████▙▄ ▗▟██████████▀▚▖   ▗▄█████████▛   ▜█████████▙▄
@@ -9,20 +27,8 @@
 ██████████████  ▝█████████████▌ ▄▄▄▄     ▄▄▄▄   ▜▄▄▄▟███████    ▝▀▀▀▀▀▀▀▀▀▀▘  ████    ▜███▖
 ▀▀▀▀▀▀▀▀▀▀▀▀▀     ▀▀▀▀▀▀▀▀▝▀▀▀▘ ▝▘▝▘     ▝▘▝▘  ▐█▀▀▀▀▀▀▀▀▀▀                   ▀▀▀▀     ▝▀▀▀▘
                                                ▝
-┅┅┅ Your banner deserves to be a bänger ┅┅┅┅┅┅ https://github.com/MarcinOrlowski/banger ┅┅┅
 ```
 
-![PyPI - Version](https://img.shields.io/pypi/v/banger?style=flat)
-![GitHub License](https://img.shields.io/github/license/MarcinOrlowski/banger)
-[![PyPI Downloads](https://static.pepy.tech/badge/banger)](https://pepy.tech/projects/banger)
-
----
-
-# What it is?
-
-`Bänger` (pronounced just `banger`) is a modern tribute to the classic Unix `banner` command line
-utility that produces text banners, with additional features added a top:  multiple built-in ASCII
-character set and support for rendering any TTF/OTF font with Unicode!
 
 ## Key Features
 
@@ -83,6 +89,6 @@ $ banger --ttf-font ~/.fonts/j/JetBrainsMonoNL_Regular.ttf --ttf-size 70 --ttf-l
 
 ## License
 
-- Written and copyrighted &copy;2025 by Marcin Orlowski <https://marcinOrlowski.com>
+- Written and copyrighted &copy;2025-2026 by Marcin Orlowski <https://marcinOrlowski.com>
 - Bänger is the open-sourced software licensed under
   the [MIT license](http://opensource.org/licenses/MIT)

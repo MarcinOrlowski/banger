@@ -66,60 +66,20 @@ This is regular Python package and is also hosted
 on [PyPi](https://pypi.org/project/banger/) so
 you can install it as usual. But because this one is supposed to rather act as the application, I
 strongly recommend to use [pipx](https://pipx.pypa.io/) to install this tool in isolated
-environment be it on Linux, Windows or MacOS machines. Once you got `pipx` up
+environment be it on Linux, Windows or macOS machines. Once you got `pipx` up
 and running, install the package:
 
 ```bash
 $ pipx install banger
 ```
 
-Of course, you can also use plain `pip` to do that, but:
-
-```bash
-$ pip install banger
-```
-
-But that might be a problem as some distributions no longer allow system-wide installations,
-therefore use of `pipx` is strongly recommended as the all-in-one solution.
+Of course, you can also use plain `pip` to do that, but that might be a problem as some
+distributions no longer allow system-wide installations, therefore use of `pipx` is strongly
+recommended as the all-in-one solution.
 
 Once installed you shold be able to run `banger` application in your terminal (session opened
 prior installation might not see it unless restarted).
-Please use `--demo` to see built-in fonts or type `--help` to see all available options.
-
-### Requirements
-
-* Python 3.8+
-* Pillow (PIL fork) for TTF/OTF font rendering
-
----
-
----
-
-## Installation Options
-
-This is regular Python package and is also hosted
-on [PyPi](https://pypi.org/project/website-as-app/) so
-you can install it as usual. But because this one is supposed to rather act as the application, I
-strongly recommend to use [pipx](https://pipx.pypa.io/) to install this tool in isolated
-environment be it on Linux, Windows or MacOS machines. Once you got `pipx` up
-and running, install the package:
-
-```bash
-$ pipx install banger
-```
-
-Of course, you can also use plain `pip` to do that, but:
-
-```bash
-$ pip install banger
-```
-
-But that might be a problem as some distributions no longer allow system-wide installations,
-therefore use of `pipx` is strongly recommended as the all-in-one solution.
-
-Once installed you shold be able to run `banger` application in your terminal (session opened
-prior installation might not see it unless restarted).
-Please use `--demo` to see built-in fonts or type `--help` to see all available options.
+Please use `--demo` to see all built-in fonts or `--help` to see all available options.
 
 ### Requirements
 
@@ -305,7 +265,11 @@ font, but `banger --font default "test"` will override the config and use the de
 
 ```ascii
 $ git clone https://github.com/yourusername/banger
-$ cd bannge
+$ cd banger
+
+# Create virtual environment (optional but recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies incl. development tools.
 # To update existing ones, use `upgrade` option
@@ -314,10 +278,8 @@ pip install -e ".[dev]"
 # Run tests
 pytest
 
-# Check compatibility with original banner
-banner "TEST" > original.txt
-banger --font banner --width 7 "TEST" > new.txt
-diff original.txt new.txt  # Should show minimal differences
+# Run it
+banner "TEST"
 ```
 
 To install dev version using `pipx` or `pip` for current sources, use (note we install no
