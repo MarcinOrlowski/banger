@@ -15,11 +15,11 @@
 
 # Changelog
 
-## @dev
+## v1.2.0 (2026-03-06)
 
-- [#0030] Extracted core functionality into `banger_lib` library package.
+- [#0030] Core functionality separted into `banger-lib` library package.
 
-## V1.1.0 (2025-07-03)
+## v1.1.0 (2025-07-03)
 
 - [#0004] Refactored configuration file handling to use OS-appropriate directories for cross-platform compatibility.
 - [#0005] Add support for `--demo-text` option to specify custom text for demo displays.
