@@ -1,5 +1,12 @@
 ##################################################################################
 #
+# Bänger by Marcin Orlowski
+# Because your `banner` deserves to be a `bänger`!
+#
+# @author    Marcin Orlowski <mail@marcinOrlowski.com>
+# Copyright  ©2025-2026 Marcin Orlowski <MarcinOrlowski.com>
+# @link      https://github.com/MarcinOrlowski/banger
+#
 ##################################################################################
 #
 # Using pre-commit hooks #
@@ -13,8 +20,7 @@
 #
 # * Ensure you got Python installed
 # * Install pre-commit: `pip install pre-commit`
-# * Go to your Logisim-evolution source code root directory
-# * Copy provided config file template: `cp .pre-commit-config.yaml.dist .pre-commit-config.yaml`
+# * Go to project root folder
 # * Plug hooks into Git pipeline: `pre-commit install`
 #
 # See `pre-commit` official installation docs too: https://pre-commit.com/#install
@@ -24,7 +30,7 @@
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       # Prevent giant files from being committed
       - id: check-added-large-files
@@ -50,7 +56,7 @@ repos:
       - id: script-must-have-extension
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.5
+    rev: v1.5.6
     hooks:
       # Forbid files containing CRLF end-lines to be committed
       - id: forbid-crlf
@@ -77,10 +83,10 @@ repos:
 
   # https://dev.to/m1yag1/how-to-setup-your-project-with-pre-commit-black-and-flake8-183k
   - repo: https://github.com/ambv/black
-    rev: 25.1.0
+    rev: 26.1.0
     hooks:
       - id: black
-        language_version: python3.12
+        language_version: python3.13
   - repo: https://github.com/pycqa/flake8
     rev: 7.3.0
     hooks:
@@ -96,7 +102,7 @@ repos:
 
   # https://github.com/pre-commit/pre-commit-hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0  # Use the ref you want to point at
+    rev: v6.0.0  # Use the ref you want to point at
     hooks:
       - id: check-executables-have-shebangs
       - id: check-merge-conflict
