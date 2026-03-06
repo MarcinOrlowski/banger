@@ -17,7 +17,7 @@
 
 ## v1.2.0 (2026-03-06)
 
-- [#0030] Core functionality separted into `banger-lib` library package.
+- [#0030] Uses `banger-lib` library package.
 
 ## v1.1.0 (2025-07-03)
 
