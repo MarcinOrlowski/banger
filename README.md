@@ -32,6 +32,8 @@ character set and support for rendering any TTF/OTF font with Unicode!
 - **Endless font options**: use any TTF/OTF font installed on your system,
 - **Better typography**  with proportional spacing that saves significant screen space,
 - **Compatible** with original Unix `banner` tool,
+- Also available as [Python library](https://github.com/MarcinOrlowski/banger-lib) so you
+  can bang directly from your Python code,
 - and **moar**!
 
 ---
