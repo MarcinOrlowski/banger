@@ -15,6 +15,10 @@
 
 # Changelog
 
+## v1.3.0 (2026-05-11)
+
+- [#0034] Merged `banger-lib` library back into `banger` package.
+
 ## v1.2.0 (2026-03-06)
 
 - [#0030] Uses `banger-lib` library package.

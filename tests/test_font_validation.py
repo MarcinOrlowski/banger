@@ -13,7 +13,7 @@
 
 import unittest
 
-from banger_lib.fonts import (
+from banger.fonts import (
     get_font_height,
     get_character_data,
     get_available_fonts,
@@ -238,7 +238,7 @@ class TestFontValidation(unittest.TestCase):
 
     def test_quadrant_font_can_render_full_alphabet_and_numbers(self):
         """Integration test: verify quadrant font can render complete character sets without errors."""
-        from banger_lib import Banger
+        from banger import Banger
 
         test_cases = [
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ",  # All uppercase

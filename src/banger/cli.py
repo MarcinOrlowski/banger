@@ -21,13 +21,13 @@ from typing import Optional
 from .config import create_config_template, get_config
 from .constants import Consts
 
-from banger_lib import Banger
-from banger_lib.fonts import (
+from .engine import Banger
+from .fonts import (
     get_available_fonts,
     _font_supports_lowercase,
     _font_supports_uppercase,
 )
-from banger_lib.terminal import get_terminal_width
+from .terminal import get_terminal_width
 
 
 def expand_special_text(text: str) -> str:
