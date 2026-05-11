@@ -13,8 +13,8 @@
 
 import unittest
 
-from banger_lib.fonts import get_available_fonts
-from banger_lib.fonts.factory import create_font
+from banger.fonts import get_available_fonts
+from banger.fonts.factory import create_font
 
 """Unit tests for font height consistency validation.
 
